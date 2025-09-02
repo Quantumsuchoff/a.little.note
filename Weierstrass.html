@@ -24,12 +24,14 @@
   <h2>Derivation of Weierstrass Substitution</h2>
 <p>Start with a reference point on a circle. Draw a circle centered at (0,0). For simplicity, your reference point shall be (-1,0). Next, draw a line through (-1,0) and an arbitrary point (x,y) along the circumference of the circle. This line will have a slope \(\lambda\), where \(\lambda\) is a parameter (it could represent the slope of a line or a rational variable). Therefore, the equation of this line will be \(y=\lambda (x+1)\).
  The next step is to replace \(y\) with \(\lambda(x+1)\) in \(x^2 +y^2 =1\). Which gives: \(x^2 +\left[\lambda(x+1)\right]^2=1\). Lastly, solve for x:</p>
-  <p>
-  $$\begin{align}
-  x^2 +[\lambda(x+1)]^2=1\Rightarrow x^2 +\lambda^2 (x^2 +2x+1) =1 &\Rightarrow x^2 +\lambda^2 x^2 +2x\lambda^2 +\lambda^2 =1 \\
-  x^2 +\lambda^2 x^2 \lambda^2 x +\lambda^2 -1=0 &\Rightarrow (1+\lambda^2)x^2 +2\lambda^2 x +(\lambda^2 -1)=0.
-  \end{align}$$
-  <p>
+<p>
+$$\begin{align*}
+  x^2 +[\lambda(x+1)]^2 &= 1 
+    &&\Rightarrow x^2 + \lambda^2(x^2 + 2x + 1) = 1 \\[6pt]
+  &= x^2 + \lambda^2 x^2 + 2\lambda^2 x + \lambda^2 
+    &&\Rightarrow (1+\lambda^2)x^2 + 2\lambda^2 x + (\lambda^2 -1) = 0
+\end{align*}$$
+<p>
 
   
   
