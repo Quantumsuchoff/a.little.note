@@ -1,33 +1,118 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Simple Website</title>
-    <!-- Load MathJax -->
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <title>My Simple Website</title>
+  <!-- Load MathJax -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    /* Navigation bar */
+    .navbar {
+      display: flex;
+      background: #222;
+      padding: 10px;
+    }
+    .dropdown {
+      position: relative;
+      margin-right: 20px;
+    }
+    .dropbtn {
+      background: #444;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .dropbtn:hover {
+      background: #666;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 40px;
+      left: 0;
+      background: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      border-radius: 5px;
+      z-index: 1;
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: black;
+    }
+    .dropdown-content a:hover {
+      background: #ddd;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    main {
+      padding: 20px;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Simple Website!</h1>
-    </header>
-    <main>
-        <section>
-            <h2>About</h2>
-            <p>This is a simple website made with HTML.</p>
-            <p>Here’s some inline math: \( a^2 + b^2 = c^2 \).</p>
-            <p>And here’s a block equation:</p>
-            <p>
-                \[
-                \int_{0}^{\infty} e^{-x^2} \, dx = \frac{\sqrt{\pi}}{2}
-                \]
-            </p>
-        </section>
-        <section>
-            <h2>Contact</h2>
-            <p>Email me at: <a href="mailto:example@example.com">example@example.com</a></p>
-        </section>
-    </main>
-    <footer>
-        <p>© 2023 My Simple Website</p>
-    </footer>
+  <!-- Navigation -->
+  <div class="navbar">
+    <div class="dropdown">
+      <button class="dropbtn">Calculus</button>
+      <div class="dropdown-content">
+        <a href="#derivatives">Derivatives</a>
+        <a href="#integrals">Integrals</a>
+        <a href="#limits">Limits</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">Physics</button>
+      <div class="dropdown-content">
+        <a href="#kinematics">Kinematics</a>
+        <a href="#forces">Forces</a>
+        <a href="#energy">Energy</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <section id="derivatives">
+      <h2>Derivatives</h2>
+      <p>Example: The derivative of \( f(x) = x^2 \) is \( f'(x) = 2x \).</p>
+    </section>
+
+    <section id="integrals">
+      <h2>Integrals</h2>
+      <p>Example: \(\int x \, dx = \frac{x^2}{2} + C\).</p>
+    </section>
+
+    <section id="limits">
+      <h2>Limits</h2>
+      <p>Example: \(\lim_{x \to 0} \frac{\sin x}{x} = 1\).</p>
+    </section>
+
+    <section id="kinematics">
+      <h2>Kinematics</h2>
+      <p>Equation of motion: \( v = u + at \).</p>
+    </section>
+
+    <section id="forces">
+      <h2>Forces</h2>
+      <p>Newton’s second law: \( F = ma \).</p>
+    </section>
+
+    <section id="energy">
+      <h2>Energy</h2>
+      <p>Kinetic energy: \( KE = \tfrac{1}{2}mv^2 \).</p>
+    </section>
+  </main>
 </body>
 </html>
