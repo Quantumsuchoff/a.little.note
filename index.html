@@ -33,7 +33,7 @@
       100% {background-position: 0% 50%;}
     }
 
-    /* Glowing Navbar */
+    /* Navbar */
     .navbar {
       display: flex;
       justify-content: center;
@@ -112,24 +112,24 @@
     .welcome-card p {
       font-size: 1.3rem;
       line-height: 1.9;
-      color: rgba(255,255,255,0.95);
+      color: rgba(255,255,255,0.95); /* solid color */
       text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
-      background: linear-gradient(90deg, #00f, #0ff, #0f0);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmer 5s linear infinite;
     }
 
     .note {
       margin-top: 20px;
       font-size: 1rem;
       font-style: italic;
-      color: rgba(255, 255, 255, 0.6);
+      font-weight: 600;
+      background: linear-gradient(90deg, #ff416c, #ff4b2b, #ffcc33, #00f, #0ff, #0f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerText 6s linear infinite alternate;
     }
 
-    @keyframes shimmer {
-      0% { background-position: -500px; }
-      100% { background-position: 500px; }
+    @keyframes shimmerText {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
     }
 
     /* Responsive */
