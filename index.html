@@ -1,4 +1,4 @@
-l<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -23,6 +23,7 @@ l<!DOCTYPE html>
     /* Navbar */
     .navbar {
       display: flex;
+      justify-content: center;
       background: rgba(0, 0, 0, 0.5);
       padding: 12px 20px;
       backdrop-filter: blur(10px);
@@ -32,19 +33,20 @@ l<!DOCTYPE html>
     .navbtn {
       background: #444;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border: none;
-      margin-right: 15px;
+      margin: 0 10px;
       cursor: pointer;
       border-radius: 25px;
       font-size: 16px;
+      font-weight: bold;
       transition: all 0.3s ease;
     }
 
     .navbtn:hover {
       background: #00c6ff;
       box-shadow: 0 0 15px #00c6ff, 0 0 30px #0072ff;
-      transform: translateY(-2px);
+      transform: translateY(-3px) scale(1.05);
     }
 
     /* Main Content */
@@ -58,22 +60,37 @@ l<!DOCTYPE html>
     }
 
     .welcome-card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-      backdrop-filter: blur(10px);
-      max-width: 600px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 50px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      backdrop-filter: blur(12px);
+      max-width: 700px;
+      animation: fadeIn 1.5s ease-in-out;
     }
 
     .welcome-card h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
+      font-size: 3rem;
+      margin-bottom: 25px;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     }
 
     .welcome-card p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      line-height: 1.8;
       color: #e0e0e0;
+    }
+
+    .note {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #b0c4de;
+      font-style: italic;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
@@ -87,8 +104,11 @@ l<!DOCTYPE html>
   <!-- Main -->
   <main>
     <div class="welcome-card">
-      <h1>Welcome to my website on physics and calculus</h1>
-      <p>Select a subject above to explore amazing topics in <strong>Calculus</strong> and <strong>Physics</strong>.</p>
+      <h1>Welcome to My Learning Website</h1>
+      <p>Explore fascinating topics in <strong>Calculus</strong> and <strong>Physics</strong> through my personal notes, parts of my book, and carefully curated explanations. This website will be updated frequently as I add more information and resources for you to enjoy!</p>
+      <div class="note">
+        These are my notes and sections from my book. More content will be added regularly.
+      </div>
     </div>
   </main>
 </body>
