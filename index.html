@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Fancy Website</title>
   <style>
     /* Reset */
@@ -18,14 +19,16 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      text-align: center;
     }
 
     /* Navbar */
     .navbar {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       background: rgba(0, 0, 0, 0.5);
-      padding: 12px 20px;
+      padding: 12px 10px;
       backdrop-filter: blur(10px);
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
@@ -33,12 +36,12 @@
     .navbtn {
       background: #444;
       color: white;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border: none;
-      margin: 0 10px;
+      margin: 5px;
       cursor: pointer;
       border-radius: 25px;
-      font-size: 16px;
+      font-size: 1rem;
       font-weight: bold;
       transition: all 0.3s ease;
     }
@@ -46,7 +49,7 @@
     .navbtn:hover {
       background: #00c6ff;
       box-shadow: 0 0 15px #00c6ff, 0 0 30px #0072ff;
-      transform: translateY(-3px) scale(1.05);
+      transform: translateY(-2px) scale(1.05);
     }
 
     /* Main Content */
@@ -55,35 +58,35 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      padding: 40px;
+      padding: 30px 15px;
     }
 
     .welcome-card {
       background: rgba(255, 255, 255, 0.08);
-      padding: 50px;
-      border-radius: 25px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      backdrop-filter: blur(12px);
+      padding: 40px 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
       max-width: 700px;
+      width: 100%;
       animation: fadeIn 1.5s ease-in-out;
     }
 
     .welcome-card h1 {
-      font-size: 3rem;
-      margin-bottom: 25px;
+      font-size: 2rem;
+      margin-bottom: 15px;
       text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     }
 
     .welcome-card p {
-      font-size: 1.3rem;
-      line-height: 1.8;
+      font-size: 1rem;
+      line-height: 1.6;
       color: #e0e0e0;
     }
 
     .note {
-      margin-top: 20px;
-      font-size: 1rem;
+      margin-top: 15px;
+      font-size: 0.9rem;
       color: #b0c4de;
       font-style: italic;
     }
@@ -91,6 +94,33 @@
     @keyframes fadeIn {
       from {opacity: 0; transform: translateY(20px);}
       to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Responsive for tablets */
+    @media (max-width: 768px) {
+      .welcome-card h1 {
+        font-size: 1.8rem;
+      }
+      .welcome-card p {
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Responsive for phones */
+    @media (max-width: 480px) {
+      .welcome-card {
+        padding: 30px 15px;
+      }
+      .welcome-card h1 {
+        font-size: 1.5rem;
+      }
+      .welcome-card p {
+        font-size: 0.9rem;
+      }
+      .navbtn {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+      }
     }
   </style>
 </head>
