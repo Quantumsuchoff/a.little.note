@@ -12,31 +12,56 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to top, #ffe1ec, #cbe6ff);
+    background: linear-gradient(-45deg, #ffe1ec, #d5e8ff, #ffd6f0, #e0f7ff);
+    background-size: 400% 400%;
+    animation: gradient 12s ease infinite;
     font-family: 'Quicksand', sans-serif;
     overflow: hidden;
     flex-direction: column;
     text-align: center;
+    position: relative;
   }
 
+  @keyframes gradient {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  /* ground */
   .ground {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 120px;
-    background: linear-gradient(to top, #a5d67b, #c7ec9f);
+    background: linear-gradient(to top, #9ccf73, #c4e6a3);
     border-top-left-radius: 50% 20px;
     border-top-right-radius: 50% 20px;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
   }
 
+  /* clouds */
+  .cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    filter: blur(2px);
+    animation: drift 60s linear infinite;
+  }
+  @keyframes drift {
+    from {transform: translateX(-200px);}
+    to {transform: translateX(120vw);}
+  }
+
+  /* tennis balls */
   .tennis {
     position: absolute;
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle at 30% 30%, #e8ff87, #c6ef52);
+    width: 35px;
+    height: 35px;
+    background: radial-gradient(circle at 30% 30%, #f9ff9a, #c7e953);
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(255,255,255,0.5);
-    animation: bounce 4s infinite ease-in-out;
+    box-shadow: 0 0 8px rgba(255,255,255,0.3);
+    animation: bounce 5s infinite ease-in-out;
   }
   .tennis::after {
     content: "";
@@ -45,41 +70,56 @@
     left: 5%;
     width: 90%;
     height: 60%;
-    border: 3px solid white;
+    border: 2px solid white;
     border-radius: 50%;
     opacity: 0.7;
   }
   @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-40px); }
+    0%, 100% { transform: translateY(0);}
+    50% { transform: translateY(-25px);}
   }
 
+  /* twinkling stars */
+  .star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: twinkle 2s infinite ease-in-out alternate;
+  }
+  @keyframes twinkle {
+    0% { opacity: 0.3; transform: scale(0.7);}
+    100% { opacity: 1; transform: scale(1);}
+  }
+
+  /* message box */
   .message-box {
-    background: rgba(255,255,255,0.85);
-    padding: 20px 25px;
-    border-radius: 20px;
-    max-width: 500px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    backdrop-filter: blur(10px);
-    font-size: 1.2rem;
+    background: rgba(255,255,255,0.75);
+    padding: 20px 28px;
+    border-radius: 24px;
+    max-width: 520px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    backdrop-filter: blur(12px);
+    font-size: 1.25rem;
     line-height: 1.6;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.6s ease, transform 0.6s ease;
     cursor: pointer;
+    transform: translateY(10px);
   }
 
   .hint {
     margin-top: 8px;
-    font-size: 0.85rem;
-    color: #555;
-    opacity: 0.6;
+    font-size: 0.8rem;
+    color: #333;
+    opacity: 0.5;
   }
 
   .fade-in {
     opacity: 0;
-    transform: translateY(10px);
     animation: fadeIn 1s forwards;
   }
-
   @keyframes fadeIn {
     to { opacity: 1; transform: translateY(0);}
   }
@@ -87,20 +127,36 @@
 </head>
 <body>
 
+<!-- ground -->
 <div class="ground"></div>
 
+<!-- clouds -->
+<div class="cloud" style="width:120px; height:60px; top:10%; left:-10%; animation-duration: 80s;"></div>
+<div class="cloud" style="width:90px; height:45px; top:20%; left:-20%; animation-duration: 100s;"></div>
+
+<!-- twinkling stars -->
 <script>
-  // floating tennis balls
+  for (let i = 0; i < 15; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.top = Math.random() * 60 + 'vh';
+    s.style.animationDelay = (Math.random() * 3) + 's';
+    document.body.appendChild(s);
+  }
+
+  // tennis balls
   for (let i = 0; i < 4; i++) {
     const ball = document.createElement('div');
     ball.className = 'tennis';
     ball.style.left = (10 + i * 20) + 'vw';
     ball.style.bottom = (20 + Math.random() * 40) + 'px';
-    ball.style.animationDelay = (Math.random() * 2) + 's';
+    ball.style.animationDelay = (Math.random() * 3) + 's';
     document.body.appendChild(ball);
   }
 </script>
 
+<!-- message box -->
 <div class="message-box fade-in" id="box">
   hey :) you've probably never had a website made just for you lol
   <div class="hint">(click when you're done reading)</div>
@@ -110,10 +166,11 @@
   const box = document.getElementById('box');
   const messages = [
     "hey :) you've probably never had a website made just for you lol",
+    "hopefully this makes you smile",
     "i was literally talking to chatgpt like 5 mins ago like 'should i text her?'",
     "and then i was like you know what... screw it. let me just go from my heart 💛",
     "ok this is gonna sound super cheesy but you were my biggest crush in high school 😳",
-    "and we literally never talked but you just seemed so cool and kind and pretty",
+    "and we literally never talked but you just seemed so cool and kind and pretty (i was too shy tbh you were out of my league)",
     "so yeah, it hurt a little when i heard what you thought about me",
     "like i just want to be super clear — i'm actually really kind, i care a lot about people",
     "but then i sit here like... do i try to prove i'm a good guy?",
@@ -134,16 +191,18 @@
     i++;
     if (i < messages.length) {
       box.style.opacity = 0;
+      box.style.transform = 'translateY(10px)';
       setTimeout(() => {
         box.innerHTML = messages[i] + '<div class="hint">(click to keep going)</div>';
         box.style.opacity = 1;
-      }, 300);
+        box.style.transform = 'translateY(0px)';
+      }, 400);
     } else {
       box.style.opacity = 0;
       setTimeout(() => {
         box.innerHTML = "okay this is officially over. thanks for coming to my ted talk 😂";
         box.style.opacity = 1;
-      }, 300);
+      }, 400);
     }
   });
 </script>
