@@ -1,106 +1,413 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Grand Learning Website</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Bloom & Reveal — Don't Believe Rumors</title>
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      color: #333;
-      background: #fdfdfd; /* clean light background */
-    }
+<!-- Google font -->
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Inter:wght@300;600&display=swap" rel="stylesheet">
 
-    .navbar {
-      display: flex;
-      justify-content: center;
-      background: #1e3c72; /* deep blue */
-      padding: 12px 20px;
-    }
+<style>
+  :root{
+    --bg1: #fff7fb;
+    --bg2: #f3f8ff;
+    --accent1: #ff8fb1;    /* pink */
+    --accent2: #ffd27a;    /* peach/gold */
+    --leaf: #7ec389;
+    --center: #ffd05b;
+    --shadow: rgba(16, 24, 40, 0.12);
+  }
 
-    .navbtn {
-      background: #f1c40f; /* gold */
-      padding: 10px 22px;
-      margin: 6px;
-      border: none;
-      border-radius: 4px;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #1e3c72;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+  body{
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(255,223,236,0.45) 0%, transparent 20%),
+                radial-gradient(800px 500px at 90% 90%, rgba(210,240,255,0.6) 0%, transparent 20%),
+                linear-gradient(180deg,var(--bg1),var(--bg2));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    overflow:hidden;
+    color:#123;
+  }
 
-    .navbtn:hover {
-      background: #d4ac0d;
-    }
+  .stage {
+    width:min(900px,92vw);
+    max-width:900px;
+    text-align:center;
+    padding:32px;
+    border-radius:28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6));
+    box-shadow: 0 10px 30px var(--shadow);
+    backdrop-filter: blur(6px) saturate(120%);
+    position:relative;
+  }
 
-    main {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
-    }
+  h1{
+    margin:0 0 10px 0;
+    font-family: "Parisienne", cursive;
+    font-size:3.0rem;
+    letter-spacing:1px;
+    color: #c33a7b;
+    text-shadow: 0 4px 18px rgba(195,58,123,0.12);
+  }
 
-    .welcome-card {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 40px 30px;
-      max-width: 700px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
+  p.lead{
+    margin:0 0 22px 0;
+    color:#334155;
+    font-size:1rem;
+    opacity:0.95;
+  }
 
-    .welcome-card h1 {
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-      color: #1e3c72;
-    }
+  /* flower container */
+  .flower-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:28px;
+    flex-direction:column;
+    margin: 10px 0 20px 0;
+    position:relative;
+  }
 
-    .welcome-card p {
-      font-size: 1.2rem;
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
+  /* sparkle background */
+  .sparkles{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .sparkles .s {
+    position:absolute;
+    width:8px;height:8px;border-radius:50%;
+    background:linear-gradient(180deg,rgba(255,255,255,0.95), rgba(255,255,255,0.6));
+    filter:blur(6px);
+    opacity:0.9;
+    animation: float 6s linear infinite;
+  }
+  @keyframes float {
+    0% { transform: translateY(40vh) scale(.6); opacity:0; }
+    10% { opacity:1; }
+    100% { transform: translateY(-20vh) scale(1); opacity:0; }
+  }
 
-    .note {
-      font-size: 0.95rem;
-      font-style: italic;
-      color: #b03a2e; /* elegant muted red accent */
-    }
+  /* the clickable flower */
+  .flower {
+    width:240px;
+    height:240px;
+    display:inline-block;
+    cursor: pointer;
+    user-select:none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
 
-    @media (max-width: 600px) {
-      .welcome-card h1 { font-size: 1.7rem; }
-      .welcome-card p { font-size: 1rem; }
-    }
-  </style>
+  /* initial tiny flower state */
+  .flower svg {
+    width:100%; height:100%;
+    transform-origin: 50% 75%;
+    transition: transform 1.6s cubic-bezier(.2,.9,.25,1), filter 0.4s;
+    transform: scale(.28) translateY(30px);
+    filter: drop-shadow(0 8px 18px rgba(17,24,39,0.12));
+  }
+
+  /* grown state */
+  .flower.grown svg {
+    transform: scale(1) translateY(0);
+  }
+
+  /* gentle pop glow when grown */
+  .flower.grown .center {
+    animation: pulse 1.8s ease-in-out 1;
+  }
+  @keyframes pulse{
+    0%{ transform:scale(0.98); filter: drop-shadow(0 10px 24px rgba(255,140,180,0.12)); }
+    50%{ transform:scale(1.03); }
+    100%{ transform:scale(1); }
+  }
+
+  /* petal default vs clickable cursor only after grown */
+  .petal { transition: transform 0.6s ease, opacity 0.6s ease; transform-origin: 50% 20%; }
+  .petal.clickable { cursor:pointer; }
+
+  /* falling petal animation class (applied by JS) */
+  .fall {
+    animation: fall 1s cubic-bezier(.1,.8,.2,1) forwards;
+  }
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity:1; }
+    100% { transform: translateY(220px) rotate(720deg) scale(.7); opacity:0; }
+  }
+
+  /* revealed word style */
+  .reveal-word {
+    margin-top: -12px;
+    font-family: "Parisienne", cursive;
+    font-size: 3rem;
+    opacity:0;
+    transform: translateY(18px) scale(.98);
+    transition: opacity .8s ease, transform .8s ease;
+    color: #7b3ac3;
+    text-shadow: 0 6px 18px rgba(123,58,195,0.12);
+  }
+  .reveal-word.visible {
+    opacity:1; transform: translateY(0) scale(1);
+  }
+
+  /* final message */
+  .message {
+    margin-top:12px;
+    font-size:1.05rem;
+    opacity:0;
+    transform: translateY(8px);
+    transition: opacity .9s ease .2s, transform .9s ease .2s;
+    color:#2b3440;
+    font-weight:600;
+  }
+  .message.visible{ opacity:1; transform: translateY(0); }
+
+  /* caption small */
+  .hint{
+    margin-top:16px;
+    font-size:.86rem;
+    color:#6b7280;
+    opacity:0.92;
+  }
+
+  /* little shine on the word when revealed */
+  .reveal-word::after{
+    content:"";
+    display:block;
+    width:100%;
+    height:8px;
+    margin-top:6px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    filter: blur(12px);
+    opacity:0.0;
+    transform: translateX(-30px);
+    transition: opacity .6s ease .6s, transform .6s ease .6s;
+  }
+  .reveal-word.visible::after{
+    opacity:1;
+    transform: translateX(0);
+  }
+
+  /* small responsive tweaks */
+  @media (max-width:520px){
+    .flower { width:160px; height:160px; }
+    h1 { font-size:2.2rem; }
+    .reveal-word { font-size:2.1rem; }
+  }
+</style>
 </head>
+
 <body>
-  <!-- Navigation -->
-  <div class="navbar">
-    <button class="navbtn" onclick="location.href='calculus.html'">Calculus</button>
-    <button class="navbtn" onclick="location.href='physics.html'">Physics</button>
+  <div class="stage" aria-live="polite">
+    <h1>Bloom & Reveal</h1>
+    <p class="lead">Click the flower to make it bloom. When it finishes growing, click a petal — watch it fall and reveal a pretty word.</p>
+
+    <div class="flower-wrap">
+      <div class="sparkles" aria-hidden="true">
+        <!-- a handful of sparkles generated by JS for variety -->
+      </div>
+
+      <!-- FLOWER: an SVG with petals as individual elements so we can listen for clicks -->
+      <div class="flower" id="flower" role="button" tabindex="0" aria-pressed="false" aria-label="flower - click to grow">
+        <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- stem -->
+          <g id="stem" transform="translate(100, 120)">
+            <path d="M0 0 C -6 30 -8 60 -6 90 C -2 130 -2 150 -2 160" stroke="#6aa66a" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.95"/>
+            <ellipse cx="-8" cy="26" rx="14" ry="7" fill="#7ec389" transform="rotate(-20)"/>
+            <ellipse cx="14" cy="46" rx="12" ry="6" fill="#76c07a" transform="rotate(10)"/>
+          </g>
+
+          <!-- petals group -->
+          <g id="petals" transform="translate(100,70)">
+            <!-- draw several petals rotated around center -->
+            <g class="petal" id="petal1" transform="rotate(0)">
+              <ellipse cx="0" cy="-36" rx="20" ry="40" fill="#ffb3d1"/>
+            </g>
+            <g class="petal" id="petal2" transform="rotate(45)">
+              <ellipse cx="0" cy="-36" rx="20" ry="40" fill="#ffb3d1"/>
+            </g>
+            <g class="petal" id="petal3" transform="rotate(90)">
+              <ellipse cx="0" cy="-36" rx="20" ry="40" fill="#ffb3d1"/>
+            </g>
+            <g class="petal" id="petal4" transform="rotate(135)">
+              <ellipse cx="0" cy="-36" rx="20" ry="40" fill="#ffb3d1"/>
+            </g>
+            <g class="petal" id="petal5" transform="rotate(180)">
+              <ellipse cx="0" cy="-36" rx="20" ry="40" fill="#ffd6a6"/>
+            </g>
+            <g class="petal" id="petal6" transform="rotate(225)">
+              <ellipse cx="0" cy="-36" rx="20" ry="40" fill="#ffd6a6"/>
+            </g>
+            <g class="petal" id="petal7" transform="rotate(270)">
+              <ellipse cx="0" cy="-36" rx="20" ry="40" fill="#ffd6a6"/>
+            </g>
+            <g class="petal" id="petal8" transform="rotate(315)">
+              <ellipse cx="0" cy="-36" rx="20" ry="40" fill="#ffb3d1"/>
+            </g>
+          </g>
+
+          <!-- center -->
+          <g transform="translate(100,70)">
+            <circle class="center" cx="0" cy="0" r="18" fill="url(#g1)" stroke="#f2b94b" stroke-width="2" />
+          </g>
+
+          <defs>
+            <radialGradient id="g1">
+              <stop offset="0%" stop-color="#fff9ec"/>
+              <stop offset="35%" stop-color="#fff0c4"/>
+              <stop offset="100%" stop-color="#ffd05b"/>
+            </radialGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="reveal-word" id="revealWord" aria-hidden="true">Hope</div>
+      <div class="message" id="message" aria-hidden="true">Don't believe rumors — they only hurt people.</div>
+      <div class="hint">Tip: click the flower once to grow it, then a petal to reveal the word.</div>
+    </div>
   </div>
 
-  <!-- Main -->
-  <main>
-    <div class="welcome-card">
-      <h1>Welcome to My Grand Learning Website</h1>
-      <p>Explore captivating topics in <strong>Calculus</strong> and <strong>Physics</strong> through my personal notes, segments of my book, and detailed explanations. This website is constantly evolving, with new content and insights added regularly to enrich your learning journey!</p>
-      <div class="note">
-        These are my notes and excerpts from my book. The website will be updated often with more information.
-      </div>
-    </div>
-  </main>
+<script>
+  // --- friendly interactive behavior ---
+  (function(){
+    const flower = document.getElementById('flower');
+    const petalElements = Array.from(document.querySelectorAll('.petal'));
+    const reveal = document.getElementById('revealWord');
+    const message = document.getElementById('message');
+    const sparklesContainer = document.querySelector('.sparkles');
+
+    // create sparkles subtly
+    for (let i=0;i<12;i++){
+      const s = document.createElement('div');
+      s.className = 's';
+      const left = Math.random()*100 + '%';
+      const top = 60 + Math.random()*30 + '%';
+      s.style.left = left;
+      s.style.top = top;
+      s.style.width = (6 + Math.random()*8) + 'px';
+      s.style.height = s.style.width;
+      s.style.animationDelay = (Math.random()*6) + 's';
+      s.style.opacity = 0.7 + Math.random()*0.3;
+      sparklesContainer.appendChild(s);
+    }
+
+    let grown = false;
+    let revealed = false;
+
+    // helper to mark petals clickable only after growth
+    function setPetalsClickable(on){
+      petalElements.forEach(p => {
+        if (on) p.classList.add('clickable'); else p.classList.remove('clickable');
+      });
+    }
+
+    // Grow action
+    function growFlower(){
+      if (grown) return;
+      flower.classList.add('grown');
+      flower.setAttribute('aria-pressed','true');
+      // slightly stagger a little petal bloom scale for nicer effect
+      petalElements.forEach((p,i) => {
+        p.style.transitionDelay = (i*40)+'ms';
+        p.style.transform = 'scale(1.05)'; // temporary pop
+        setTimeout(()=> p.style.transform = 'scale(1)', 350 + i*40);
+      });
+
+      // after the main grow transition completes, set grown flag and allow petal clicks
+      setTimeout(()=> {
+        grown = true;
+        setPetalsClickable(true);
+      }, 1600); // matches CSS transition
+    }
+
+    // Petal fall & reveal sequence
+    function fallAndReveal(petal){
+      if (!grown || revealed) return;
+      revealed = true;
+      setPetalsClickable(false);
+
+      // animate petal falling
+      petal.classList.add('fall');
+
+      // optionally give the center a small blink
+      const center = document.querySelector('.center');
+      center.animate([
+        { transform: 'scale(1)' },
+        { transform: 'scale(1.08)' },
+        { transform: 'scale(1)' }
+      ], { duration: 500, easing: 'ease-out' });
+
+      // reveal the "pretty word" after a short delay
+      setTimeout(()=> {
+        reveal.classList.add('visible');
+        reveal.setAttribute('aria-hidden','false');
+        // animate a sparkle to the word (tiny scale)
+        reveal.animate([{ transform: 'translateY(10px) scale(.98)', opacity:0 }, { transform:'translateY(0) scale(1)', opacity:1 }], { duration:700, easing:'cubic-bezier(.2,.9,.25,1)' });
+
+        // show message after a small delay
+        setTimeout(()=> {
+          message.classList.add('visible');
+          message.setAttribute('aria-hidden','false');
+        }, 550);
+      }, 780);
+
+      // remove the petal from DOM after it falls (clean)
+      setTimeout(()=> {
+        try { petal.remove(); } catch(e){}
+      }, 1400);
+    }
+
+    // event listeners
+    flower.addEventListener('click', (e) => {
+      // If clicked on a petal element directly after grown, let that handle
+      // But primary click on flower triggers growth.
+      if (!grown) {
+        growFlower();
+      }
+    });
+
+    // allow pressing Enter/Space to grow (accessibility)
+    flower.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        if (!grown) growFlower();
+      }
+    });
+
+    // attach petal click handlers
+    petalElements.forEach(p => {
+      p.addEventListener('click', (ev) => {
+        if (!grown) return;
+        fallAndReveal(p);
+        ev.stopPropagation();
+      });
+      // keyboard support for petals (tabbing)
+      p.setAttribute('tabindex','0');
+      p.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar') {
+          ev.preventDefault();
+          fallAndReveal(p);
+        }
+      });
+    });
+
+    // a tiny instruction: if user clicks the center after grown, nudge hint
+    const hint = document.querySelector('.hint');
+    flower.addEventListener('dblclick', () => {
+      if (!grown) growFlower();
+      else hint.textContent = "Click one of the petals to watch it fall.";
+      setTimeout(()=> hint.textContent = "Tip: click the flower once to grow it, then a petal to reveal the word.", 2500);
+    });
+
+    // ensure petals can't be clicked until grown
+    setPetalsClickable(false);
+  })();
+</script>
+
 </body>
 </html>
