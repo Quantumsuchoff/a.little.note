@@ -19,7 +19,6 @@
     text-align: center;
   }
 
-  /* ground */
   .ground {
     position: absolute;
     bottom: 0;
@@ -30,7 +29,6 @@
     border-top-right-radius: 50% 20px;
   }
 
-  /* floating tennis balls */
   .tennis {
     position: absolute;
     width: 40px;
@@ -51,13 +49,11 @@
     border-radius: 50%;
     opacity: 0.7;
   }
-
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-40px); }
   }
 
-  /* message box */
   .message-box {
     background: rgba(255,255,255,0.85);
     padding: 20px 25px;
@@ -93,8 +89,8 @@
 
 <div class="ground"></div>
 
-<!-- floating tennis balls -->
 <script>
+  // floating tennis balls
   for (let i = 0; i < 4; i++) {
     const ball = document.createElement('div');
     ball.className = 'tennis';
@@ -114,16 +110,23 @@
   const box = document.getElementById('box');
   const messages = [
     "hey :) you've probably never had a website made just for you lol",
-    "i was literally talking to chatgpt 2 mins ago like 'should i text her?'",
-    "and then i was like you know what... screw it... let me just go from my heart 💛",
+    "i was literally talking to chatgpt like 5 mins ago like 'should i text her?'",
+    "and then i was like you know what... screw it. let me just go from my heart 💛",
     "ok this is gonna sound super cheesy but you were my biggest crush in high school 😳",
-    "and i know we've literally never talked but you just seemed so cool and kind and pretty",
-    "so it hurt a little when i heard the stuff you thought about me",
-    "because i swear i'm actually super kind, i care a lot about people lol",
-    "anyway this is so random but i just wanted you to know",
-    "like i hope one day you might give me a chance to show you that side of me 💛",
-    "okay this is officially the weirdest thing i've ever done but also kinda wholesome 😂",
-    "thanks for reading if you got this far 🫶"
+    "and we literally never talked but you just seemed so cool and kind and pretty",
+    "so yeah, it hurt a little when i heard what you thought about me",
+    "like i just want to be super clear — i'm actually really kind, i care a lot about people",
+    "but then i sit here like... do i try to prove i'm a good guy?",
+    "because that just sounds defensive and i don't want to be that guy lol",
+    "so i literally don't know what to do other than be honest right now",
+    "and like screw it, if you already think i'm bad then this website probably just creeps you out 😂",
+    "but at least i had a chance to let you know i care and that i think you're awesome",
+    "and honestly this whole thing is so random but also kinda wholesome??",
+    "so if nothing else, i hope this makes you laugh a little or at least smile",
+    "btw those floating things are tennis balls 🎾 (i tried lol)",
+    "and yes i suck at coding but this was from the heart so that has to count for something 💛",
+    "thanks for reading if you made it this far — that already means a lot 🫶",
+    "okay bye 👋 have a really good day :)"
   ];
 
   let i = 0;
@@ -138,7 +141,7 @@
     } else {
       box.style.opacity = 0;
       setTimeout(() => {
-        box.innerHTML = "ok bye 👋 have a good day :)";
+        box.innerHTML = "okay this is officially over. thanks for coming to my ted talk 😂";
         box.style.opacity = 1;
       }, 300);
     }
