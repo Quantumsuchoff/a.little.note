@@ -26,8 +26,6 @@ footer{text-align:center;font-size:0.9rem;color:#777;padding:2rem 1rem;}
 @keyframes popUp{from{opacity:0; transform:translateY(30px);}to{opacity:1; transform:translateY(0);}}
 #musicControls{text-align:center;margin:1rem 0;}
 #musicControls button{padding:0.5rem 1rem;font-size:1rem;margin:0 0.5rem;border:none;border-radius:15px;background:#ffd6e0;color:#d94f70;cursor:pointer;font-weight:600;}
-#musicPlayerContainer{display:flex;justify-content:center;margin-top:1rem;}
-iframe{border-radius:15px;}
 </style>
 </head>
 <body>
@@ -43,9 +41,7 @@ iframe{border-radius:15px;}
   <button id="stopMusicBtn">Stop Music ⏹️</button>
 </div>
 
-<div id="musicPlayerContainer">
-  <div id="player"></div>
-</div>
+<audio id="bgMusic" loop></audio>
 
 <!-- Home Page -->
 <div id="home" class="page active">
@@ -91,15 +87,28 @@ iframe{border-radius:15px;}
   <p>Made with love just for you 🌷</p>
 </footer>
 
-<script src="https://www.youtube.com/iframe_api"></script>
 <script>
-let player;
-let currentMood = '';
 const musicTracks = {
-  sad: ['6P5u2nq8M8w','3kA4GJ3s0g4','1nX9vF9Y0sI'],
-  happy: ['5bY7uZ1JgkA','3X9H8VZQ3hE','GRxofEmo3HA'],
-  overwhelmed: ['4mX5j3vVqZ0','1v3v3VgD0N4','1bJq7z8tZ6Y'],
-  tired: ['4fvoJ6f0c8A','3l6c0pJ0q0I','6vYv8F7vO2I']
+  sad:[
+    'https://www.mfiles.co.uk/mp3-downloads/beethoven-fur-elise.mp3',
+    'https://www.mfiles.co.uk/mp3-downloads/prokofiev-piano-sonata-4.mp3',
+    'https://www.mfiles.co.uk/mp3-downloads/mahler-adagietto.mp3'
+  ],
+  happy:[
+    'https://www.mfiles.co.uk/mp3-downloads/bach-brandenburg-2.mp3',
+    'https://www.mfiles.co.uk/mp3-downloads/brahms-hungarian-dance-5.mp3',
+    'https://www.mfiles.co.uk/mp3-downloads/vivaldi-spring.mp3'
+  ],
+  overwhelmed:[
+    'https://www.mfiles.co.uk/mp3-downloads/chopin-nocturne-op-9-no-2.mp3',
+    'https://www.mfiles.co.uk/mp3-downloads/stravinsky-firebird.mp3',
+    'https://www.mfiles.co.uk/mp3-downloads/bernstein-candide.mp3'
+  ],
+  tired:[
+    'https://www.mfiles.co.uk/mp3-downloads/debussy-clair-de-lune.mp3',
+    'https://www.mfiles.co.uk/mp3-downloads/rachmaninoff-vocalise.mp3',
+    'https://www.mfiles.co.uk/mp3-downloads/satie-gymnopedie-1.mp3'
+  ]
 };
 
 const notes = {
@@ -142,39 +151,42 @@ const notes = {
   ]
 };
 
-// YouTube API
-function onYouTubeIframeAPIReady(){
-  player = new YT.Player('player', {height:'80', width:'300', videoId:'', playerVars:{autoplay:0, loop:1, playlist:''}});
-}
+let currentMood = '';
+const bgMusic = document.getElementById('bgMusic');
+const startBtn = document.getElementById('startMusicBtn');
+const stopBtn = document.getElementById('stopMusicBtn');
 
 function playMusic(mood){
   if(mood && musicTracks[mood]){
-    const trackList = musicTracks[mood];
-    const trackId = trackList[Math.floor(Math.random()*trackList.length)];
-    player.loadVideoById(trackId);
-    player.playVideo();
+    const tracks = musicTracks[mood];
+    const track = tracks[Math.floor(Math.random() * tracks.length)];
+    bgMusic.src = track;
+    bgMusic.play();
   }
 }
 
-document.getElementById('startMusicBtn').onclick = () => { playMusic(currentMood); };
-document.getElementById('stopMusicBtn').onclick = () => { player.stopVideo(); };
+startBtn.onclick = () => { playMusic(currentMood); };
+stopBtn.onclick = () => { bgMusic.pause(); bgMusic.currentTime = 0; };
 
 function showPage(pageId,bgColor,mood){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
   document.body.style.background = bgColor;
   currentMood = mood;
-  if(mood) playMusic(mood);
+  playMusic(mood);
 }
 
 function showNote(mood){
   const arr = notes[mood];
-  const note = arr[Math.floor(Math.random()*arr.length)];
+  const note = arr[Math.floor(Math.random() * arr.length)];
   const noteCard = document.getElementById('note-'+mood);
   noteCard.innerText = note;
-  noteCard.style.opacity=0;
-  noteCard.style.transform='translateY(20px)';
-  setTimeout(()=>{noteCard.style.opacity=1; noteCard.style.transform='translateY(0)';},50);
+  noteCard.style.opacity = 0;
+  noteCard.style.transform = 'translateY(20px)';
+  setTimeout(()=>{
+    noteCard.style.opacity = 1;
+    noteCard.style.transform = 'translateY(0)';
+  },50);
 }
 </script>
 
