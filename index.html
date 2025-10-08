@@ -6,127 +6,126 @@
 <title>Sidnee's Corner 🌸</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;}
-body{
-  margin:0;
-  font-family:'Poppins',sans-serif;
-  background: linear-gradient(135deg,#ffe6f0,#fff8e7);
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffe6f0, #fff8e7);
   transition: background 1s ease;
-  overflow-x:hidden;
-  color:#444;
-  min-height:100vh;
+  color: #444;
+  min-height: 100vh;
 }
-header{
-  text-align:center;
-  padding:3rem 1rem 2rem;
+header {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
 }
-header h1{
-  font-family:'Dancing Script',cursive;
-  font-size:3rem;
-  margin:0;
-  color:#d94f70;
+header h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  margin: 0;
+  color: #d94f70;
   text-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-header p{
-  font-size:1.2rem;
-  margin-top:0.5rem;
-  color:#555;
+header p {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  color: #555;
 }
-.moods{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  margin:2rem 0;
-  gap:1rem;
+.moods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 1rem;
 }
-.btn-mood{
-  background:linear-gradient(145deg,#ffb3c6,#ffcce0);
-  border:none;
-  border-radius:50px;
-  padding:1rem 2rem;
-  font-size:1.2rem;
-  cursor:pointer;
-  color:white;
-  font-weight:600;
-  transition:all 0.3s ease;
-  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+.btn-mood {
+  background: linear-gradient(145deg,#ffb3c6,#ffcce0);
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
-.btn-mood:hover{
-  transform:translateY(-5px) scale(1.1);
-  box-shadow:0 15px 25px rgba(0,0,0,0.3);
+.btn-mood:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.3);
 }
-.page{
-  display:none;
-  padding:2rem 1rem;
+.page {
+  display: none;
+  padding: 2rem 1rem;
   animation: fadeIn 1s ease;
-  max-width:600px;
-  margin:0 auto;
+  max-width: 600px;
+  margin: 0 auto;
 }
-.active{display:block;}
-.note-card{
-  background:#fff;
-  border-radius:25px;
-  padding:2rem;
-  margin:2rem auto;
-  font-size:1.2rem;
-  line-height:1.6;
-  box-shadow:0 12px 25px rgba(0,0,0,0.15);
-  opacity:0;
-  transform:translateY(30px);
+.active { display: block; }
+.note-card {
+  background: #fff;
+  border-radius: 25px;
+  padding: 2rem;
+  margin: 2rem auto;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  opacity: 0;
+  transform: translateY(30px);
   animation: popUp 0.6s forwards;
-  text-align:center;
+  text-align: center;
 }
-.btn-note{
-  margin-top:1rem;
-  background:#ffd6e0;
-  color:#d94f70;
-  border:none;
-  border-radius:30px;
-  padding:0.8rem 2rem;
-  font-size:1rem;
-  cursor:pointer;
-  font-weight:600;
-  transition:all 0.3s ease;
+.btn-note {
+  margin-top: 1rem;
+  background: #ffd6e0;
+  color: #d94f70;
+  border: none;
+  border-radius: 30px;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
-.btn-note:hover{
-  transform:scale(1.1) rotate(-1deg);
-  box-shadow:0 10px 20px rgba(0,0,0,0.2);
+.btn-note:hover {
+  transform: scale(1.1) rotate(-1deg);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
-.btn-back{
-  margin-top:2rem;
-  background:#ffb3c6;
-  color:white;
-  border:none;
-  border-radius:25px;
-  padding:0.6rem 1.5rem;
-  font-size:0.95rem;
-  cursor:pointer;
-  transition:transform 0.3s;
+.btn-back {
+  margin-top: 2rem;
+  background: #ffb3c6;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
-.btn-back:hover{transform:scale(1.1);}
-footer{
-  text-align:center;
-  font-size:0.9rem;
-  color:#777;
-  padding:2rem 1rem;
+.btn-back:hover { transform: scale(1.1); }
+#musicControls {
+  text-align: center;
+  margin: 1rem 0;
 }
-#musicControls{
-  text-align:center;
-  margin:1rem 0;
+#musicControls button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin: 0 0.5rem;
+  border: none;
+  border-radius: 15px;
+  background: #ffd6e0;
+  color: #d94f70;
+  cursor: pointer;
+  font-weight: 600;
 }
-#musicControls button{
-  padding:0.5rem 1rem;
-  font-size:1rem;
-  margin:0 0.5rem;
-  border:none;
-  border-radius:15px;
-  background:#ffd6e0;
-  color:#d94f70;
-  cursor:pointer;
-  font-weight:600;
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+  padding: 2rem 1rem;
 }
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes popUp{from{opacity:0; transform:translateY(30px);}to{opacity:1; transform:translateY(0);}}
+@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+@keyframes popUp { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
 </style>
 </head>
 <body>
@@ -142,7 +141,7 @@ footer{
   <button id="stopMusicBtn">Stop Music ⏹️</button>
 </div>
 
-<audio id="bgMusic" loop preload="auto"></audio>
+<audio id="bgMusic" loop></audio>
 
 <!-- Home Page -->
 <div id="home" class="page active">
@@ -189,23 +188,24 @@ footer{
 </footer>
 
 <script>
+// Music tracks (MP3 links)
 const musicTracks = {
-  sad:[
+  sad: [
     'https://www.mfiles.co.uk/mp3-downloads/beethoven-fur-elise.mp3',
-    'https://www.mfiles.co.uk/mp3-downloads/prokofiev-piano-sonata-4.mp3',
+    'https://www.mfiles.co.uk/mp3-downloads/chopin-nocturne-op-9-no-2.mp3',
     'https://www.mfiles.co.uk/mp3-downloads/mahler-adagietto.mp3'
   ],
-  happy:[
+  happy: [
     'https://www.mfiles.co.uk/mp3-downloads/bach-brandenburg-2.mp3',
-    'https://www.mfiles.co.uk/mp3-downloads/brahms-hungarian-dance-5.mp3',
-    'https://www.mfiles.co.uk/mp3-downloads/vivaldi-spring.mp3'
+    'https://www.mfiles.co.uk/mp3-downloads/vivaldi-spring.mp3',
+    'https://www.mfiles.co.uk/mp3-downloads/mozart-piano-concerto-17.mp3'
   ],
-  overwhelmed:[
-    'https://www.mfiles.co.uk/mp3-downloads/chopin-nocturne-op-9-no-2.mp3',
+  overwhelmed: [
     'https://www.mfiles.co.uk/mp3-downloads/stravinsky-firebird.mp3',
-    'https://www.mfiles.co.uk/mp3-downloads/bernstein-candide.mp3'
+    'https://www.mfiles.co.uk/mp3-downloads/adams-short-ride.mp3',
+    'https://www.mfiles.co.uk/mp3-downloads/bernstein-candide-overture.mp3'
   ],
-  tired:[
+  tired: [
     'https://www.mfiles.co.uk/mp3-downloads/debussy-clair-de-lune.mp3',
     'https://www.mfiles.co.uk/mp3-downloads/rachmaninoff-vocalise.mp3',
     'https://www.mfiles.co.uk/mp3-downloads/satie-gymnopedie-1.mp3'
@@ -257,35 +257,48 @@ const bgMusic = document.getElementById('bgMusic');
 const startMusicBtn = document.getElementById('startMusicBtn');
 const stopMusicBtn = document.getElementById('stopMusicBtn');
 
-function showPage(pageId,bgColor,mood){
+// Show mood page
+function showPage(pageId, bgColor, mood){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
-  document.body.style.background=bgColor;
-  currentMood=mood;
+  document.body.style.background = bgColor;
+
+  currentMood = mood;
   if(mood && musicTracks[mood]){
     const track = musicTracks[mood][Math.floor(Math.random()*musicTracks[mood].length)];
-    bgMusic.src=track;
+    bgMusic.src = track;
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
   }
 }
 
-startMusicBtn.onclick = ()=>{
-  if(bgMusic.src){
-    bgMusic.play().catch(e=>console.log("Play prevented until user interaction",e));
+// Start music button
+startMusicBtn.onclick = () => {
+  if(currentMood && bgMusic.src){
+    bgMusic.play().catch(e => console.log("Music play blocked until user interaction", e));
   } else {
-    alert("Select a mood first!");
+    alert("Please select a mood first!");
   }
 };
 
-stopMusicBtn.onclick = ()=>{bgMusic.pause(); bgMusic.currentTime=0;};
+// Stop music button
+stopMusicBtn.onclick = () => {
+  bgMusic.pause();
+  bgMusic.currentTime = 0;
+};
 
+// Show note
 function showNote(mood){
-  const arr=notes[mood];
-  const note=arr[Math.floor(Math.random()*arr.length)];
-  const noteCard=document.getElementById('note-'+mood);
-  noteCard.innerText=note;
-  noteCard.style.opacity=0;
-  noteCard.style.transform='translateY(20px)';
-  setTimeout(()=>{noteCard.style.opacity=1; noteCard.style.transform='translateY(0)';},50);
+  const arr = notes[mood];
+  const note = arr[Math.floor(Math.random() * arr.length)];
+  const noteCard = document.getElementById('note-'+mood);
+  noteCard.innerText = note;
+  noteCard.style.opacity = 0;
+  noteCard.style.transform = 'translateY(20px)';
+  setTimeout(()=>{
+    noteCard.style.opacity = 1;
+    noteCard.style.transform = 'translateY(0)';
+  },50);
 }
 </script>
 
