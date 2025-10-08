@@ -1,94 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sidnee's Corner 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffe6f0, #fff8e7);
+  transition: background 1s ease;
+  overflow-x: hidden;
+  color: #444;
+  position: relative;
+}
+header {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+  position: relative;
+}
+header h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  margin: 0;
+  color: #d94f70;
+  animation: float 3s ease-in-out infinite;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.moods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 1rem;
+}
+.btn-mood {
+  background: linear-gradient(145deg,#ffb3c6,#ffcce0);
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+}
+.btn-mood:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+}
+.page {
+  display: none;
+  padding: 2rem 1rem;
+  animation: fadeIn 1s ease;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.active { display: block; }
+.note-card {
+  background: #fff;
+  border-radius: 25px;
+  padding: 2rem;
+  margin: 2rem auto;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: popUp 0.6s forwards;
+  text-align: center;
+  position: relative;
+}
+.btn-note {
+  margin-top: 1rem;
+  background: #ffd6e0;
+  color: #d94f70;
+  border: none;
+  border-radius: 30px;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn-note:hover {
+  transform: scale(1.1) rotate(-1deg);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+.btn-back {
+  margin-top: 2rem;
+  background: #ffb3c6;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.btn-back:hover { transform: scale(1.1); }
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+  padding: 2rem 1rem;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes popUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.sparkle {
+  position: absolute;
+  font-size: 1rem;
+  opacity: 0.8;
+  animation: sparkleAnim 2s infinite;
+}
+@keyframes sparkleAnim {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  50% { transform: translateY(-10px) scale(1.3); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 0.8; }
+}
+#musicToggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  background: #ffd6e0;
+  color: #d94f70;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 1000;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Sidnee's Corner 🌸</h1>
+</header>
+
+<audio id="bgMusic" loop autoplay>
+  <source src="https://cdn.pixabay.com/audio/2023/03/03/audio_8b0e8a8e7a.mp3" type="audio/mpeg">
+</audio>
+<button id="musicToggle">🔊 Music On</button>
+
+<div id="home" class="page active">
+  <p style="text-align:center; font-size:1.2rem;">How are you feeling today?</p>
+  <div class="moods">
+    <button class="btn-mood" onclick="showPage('sad','#cce0ff','😢')">Sad</button>
+    <button class="btn-mood" onclick="showPage('happy','#fff7b3','😊')">Happy</button>
+    <button class="btn-mood" onclick="showPage('overwhelmed','#ffd9b3','😵')">Overwhelmed</button>
+    <button class="btn-mood" onclick="showPage('tired','#d6c1ff','😴')">Tired</button>
+  </div>
+</div>
+
+<!-- Mood Pages -->
+<div id="sad" class="page">
+  <h2>Feeling a bit sad 😢</h2>
+  <button class="btn-note" onclick="showNote('sad')">Get a note</button>
+  <div id="note-sad" class="note-card"></div>
+  <button class="btn-back" onclick="showPage('home','#ffe6f0')">⬅ Back</button>
+</div>
+
+<div id="happy" class="page">
+  <h2>Feeling happy today 😊</h2>
+  <button class="btn-note" onclick="showNote('happy')">Get a note</button>
+  <div id="note-happy" class="note-card"></div>
+  <button class="btn-back" onclick="showPage('home','#ffe6f0')">⬅ Back</button>
+</div>
+
+<div id="overwhelmed" class="page">
+  <h2>Feeling overwhelmed 😵</h2>
+  <button class="btn-note" onclick="showNote('overwhelmed')">Get a note</button>
+  <div id="note-overwhelmed" class="note-card"></div>
+  <button class="btn-back" onclick="showPage('home','#ffe6f0')">⬅ Back</button>
+</div>
+
+<div id="tired" class="page">
+  <h2>Feeling tired 😴</h2>
+  <button class="btn-note" onclick="showNote('tired')">Get a note</button>
+  <div id="note-tired" class="note-card"></div>
+  <button class="btn-back" onclick="showPage('home','#ffe6f0')">⬅ Back</button>
+</div>
+
+<footer>
+  <p>Made with love just for you 🌷</p>
+</footer>
+
 <script>
 const notes = {
   sad:[
-    "Even on your hardest days, remember your little brother sees you as his hero. His eyes light up whenever you smile at him. They feel your love. Every hug and laugh you give them stays in their hearts. I promise, even when sad, your little sister thinks you can do anything 💧",
-    "Every giggle your brother has when you sing Baby Shark is pure joy, and you made it happen 💧",
-    "Even when you feel invisible, there is always someone who sees you. There is always someone who sees how special and amazing you are 💧",
-    "When your eyes are tired, just remember love matters more than words can say 💧",
-    "It’s okay to cry sometimes. It doesn’t make you weak 💧",
-    "You matter more than you realize 💧",
-    "You’re balancing so much, and you’re doing beautifully 💧",
-    "You are loved more than you know 💧",
+    "Even on your hardest days, remember your little brother sees you as his hero...",
+    "Every giggle your brother has when you sing Baby Shark is pure joy.",
+    "Even when you feel invisible, there is always someone who sees you.",
+    "When your eyes are tired, love matters more than words can say.",
+    "It’s okay to cry sometimes.",
+    "You matter more than you realize.",
+    "You’re balancing so much, and doing beautifully.",
+    "You are loved more than you know.",
     "Chik-fil-A cows cheer for you in spirit 🐄",
     "Even on gloomy days, you’re a sunshine 🌥",
-    "When you feel sad, just remember you’re an amazing sister, Sidnee 💧"
+    "You’re an amazing sister, Sidnee."
   ],
   happy:[
-    "Your laughter is sooooooo contagious 🌞",
-    "I've never seen a kid smile as bright as your brother when you start singing Baby Shark 🌞",
-    "The way you juggle school and jobs is incredible 🌞",
-    "You deserve this happiness, Sidnee! ✨",
-    "Even the busiest days can have joyful moments ✨",
-    "You have the prettiest smile known to humanity. Please, please keep smiling 🌞",
-    "You make ordinary days special for everyone around you ✨"
+    "Your laughter is contagious!",
+    "Your brother’s smiles are the brightest.",
+    "The way you juggle school and jobs is incredible.",
+    "You deserve this happiness, Sidnee!",
+    "Even busy days have joyful moments.",
+    "You have the prettiest smile. Keep shining.",
+    "You make ordinary days special."
   ],
   overwhelmed:[
-    "I know it may be hard, but remember to take one breath at a time, Sidnee 🌊",
-    "It’s okay to ask for help if you need it 🌊",
-    "You’ve survived every overwhelming day before, you can do it again 🌊",
-    "I believe in you 🌊",
-    "Sooo many people admire your strength, even if you don’t see it 🌊",
-    "Even small progress is progress 🌊",
-    "When you are overwhelmed, just remember your little brother thinks you’re a hero 🌊",
-    "Remember to smile even through all the challenges 🌊"
+    "Take one breath at a time, Sidnee.",
+    "It’s okay to ask for help.",
+    "You’ve survived every overwhelming day before.",
+    "I believe in you.",
+    "Many admire your strength.",
+    "Even small progress is progress.",
+    "Your little brother thinks you’re a hero.",
+    "Remember to smile through challenges."
   ],
   tired:[
     "Rest is not lazy. You deserve it 😴",
     "Coffee can wait, but your well-being cannot ☕",
-    "Working TWO jobs, being the best sister ever, AND being an academic weapon? Please, please take a break. You deserve time to yourself 😴"
+    "Working TWO jobs, being an amazing sister AND academic weapon? Take a break."
   ]
 };
 
-let currentEmojis = '';
+const musicTracks = {
+  sad: "https://cdn.pixabay.com/audio/2022/08/10/audio_9b23a7a4d6.mp3",
+  happy: "https://cdn.pixabay.com/audio/2023/03/03/audio_8b0e8a8e7a.mp3",
+  overwhelmed: "https://cdn.pixabay.com/audio/2022/03/15/audio_88f5b8f6f0.mp3",
+  tired: "https://cdn.pixabay.com/audio/2023/01/12/audio_4e7e1a33aa.mp3"
+};
 
-function showPage(pageId, bgColor, emojis) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+const music = document.getElementById('bgMusic');
+const toggle = document.getElementById('musicToggle');
+
+toggle.addEventListener('click', () => {
+  if(music.paused){ music.play(); toggle.innerText='🔊 Music On'; }
+  else { music.pause(); toggle.innerText='🔇 Music Off'; }
+});
+
+function showPage(pageId, bgColor, emoji){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
   document.body.style.background = bgColor;
-  currentEmojis = emojis;
-  createEmojis();
-  createConfetti();
+  if(musicTracks[pageId]) music.src = musicTracks[pageId];
+  createSparkles(emoji);
 }
 
 function showNote(mood){
   const noteArray = notes[mood];
-  const note = noteArray[Math.floor(Math.random()*noteArray.length)];
+  const note = noteArray[Math.floor(Math.random() * noteArray.length)];
   const noteCard = document.getElementById('note-' + mood);
   noteCard.innerText = note;
-
-  // floating emojis inside note
-  noteCard.innerHTML += '<span>'+currentEmojis.split('').join('</span><span>')+'</span>';
   noteCard.style.opacity = 0;
   noteCard.style.transform = 'translateY(20px)';
-  setTimeout(()=>{noteCard.style.opacity=1; noteCard.style.transform='translateY(0)';},50);
+  setTimeout(()=>{ noteCard.style.opacity=1; noteCard.style.transform='translateY(0)'; },50);
 }
 
-function createEmojis(){
-  document.querySelectorAll('.emoji').forEach(e=>e.remove());
-  for(let i=0;i<25;i++){
-    const emoji = document.createElement('div');
-    emoji.className='emoji';
-    emoji.style.left = Math.random()*100+'%';
-    emoji.style.fontSize = (Math.random()*25+15)+'px';
-    emoji.style.animationDuration = (Math.random()*5+4)+'s';
-    emoji.innerText = currentEmojis[Math.floor(Math.random()*currentEmojis.length)];
-    document.body.appendChild(emoji);
-    setTimeout(()=>emoji.remove(),8000);
-  }
-}
-
-function createConfetti(){
-  document.querySelectorAll('.confetti').forEach(e=>e.remove());
-  const confettiEmojis = currentEmojis.split('');
-  for(let i=0;i<30;i++){
-    const confetti = document.createElement('div');
-    confetti.className='confetti';
-    confetti.style.left = Math.random()*100+'%';
-    confetti.style.fontSize = (Math.random()*25+15)+'px';
-    confetti.innerText = confettiEmojis[Math.floor(Math.random()*confettiEmojis.length)];
-    confetti.style.animationDuration = (Math.random()*5+5)+'s';
-    document.body.appendChild(confetti);
-    setTimeout(()=>confetti.remove(),8000);
-  }
-}
-</script>
+function createSparkles(emoji='✨'){
+  const sparkleCount = 25;
+  const sparkleColors = ['#ffd6e0','#fff7b3','#cce0ff','#d6c1ff','#ffb3c6'];
+  for(let i=0;i<sparkleCount;i++){
+    const sparkle = document.createElement('
