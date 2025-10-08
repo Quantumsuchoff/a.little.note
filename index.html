@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sidnee's Corner 🌸</title>
+<title>Sidnee's Magical Corner 🌸</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;}
+*{box-sizing:border-box;margin:0;padding:0;}
 body{
-  margin:0;
   font-family:'Poppins',sans-serif;
   background: linear-gradient(135deg,#ffe6f0,#fff8e7);
-  transition: background 1s ease;
   overflow-x:hidden;
   color:#444;
+  transition: background 1s ease;
+  position:relative;
+  min-height:100vh;
 }
 header{
   text-align:center;
@@ -23,17 +24,15 @@ header{
 header h1{
   font-family:'Dancing Script',cursive;
   font-size:3rem;
-  margin:0;
   color:#d94f70;
   animation: float 3s ease-in-out infinite;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 header p{
   font-size:1.2rem;
-  margin-top:0.5rem;
   color:#555;
+  margin-top:0.5rem;
 }
-
 .moods{
   display:flex;
   flex-wrap:wrap;
@@ -41,7 +40,6 @@ header p{
   margin:2rem 0;
   gap:1rem;
 }
-
 .btn-mood{
   background:linear-gradient(145deg,#ffb3c6,#ffcce0);
   border:none;
@@ -54,29 +52,20 @@ header p{
   transition:all 0.3s ease;
   box-shadow:0 5px 20px rgba(0,0,0,0.2);
   position:relative;
-  overflow:hidden;
 }
 .btn-mood:hover{
-  transform:translateY(-5px) scale(1.1);
+  transform:scale(1.1);
   box-shadow:0 15px 25px rgba(0,0,0,0.3);
+  animation: glow 1s infinite alternate;
 }
-.btn-mood::after{
-  content:"💖";
-  position:absolute;
-  top:-10px;
-  right:-10px;
-  font-size:1.5rem;
-  opacity:0;
-  transition:all 0.5s ease;
-}
-.btn-mood:hover::after{
-  top:0px; right:0px; opacity:1;
+@keyframes glow{
+  0%{box-shadow:0 10px 20px rgba(255,180,198,0.6);}
+  100%{box-shadow:0 15px 25px rgba(255,180,198,1);}
 }
 
 .page{
   display:none;
   padding:2rem 1rem;
-  animation: fadeIn 1s ease;
   max-width:600px;
   margin:0 auto;
 }
@@ -90,19 +79,19 @@ header p{
   font-size:1.2rem;
   line-height:1.6;
   box-shadow:0 12px 25px rgba(0,0,0,0.15);
-  opacity:0;
-  transform:translateY(30px);
-  animation: popUp 0.6s forwards;
   text-align:center;
   position:relative;
+  overflow:hidden;
 }
-.note-card::before{
-  content:"✨";
+.note-card span{
   position:absolute;
-  top:-15px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:1.5rem;
+  font-size:0.8rem;
+  opacity:0.7;
+  animation: floatUp 3s linear infinite;
+}
+@keyframes floatUp{
+  0%{transform:translateY(100%);}
+  100%{transform:translateY(-100%);}
 }
 
 .btn-note{
@@ -121,7 +110,6 @@ header p{
   transform:scale(1.1) rotate(-1deg);
   box-shadow:0 10px 20px rgba(0,0,0,0.2);
 }
-
 .btn-back{
   margin-top:2rem;
   background:#ffb3c6;
@@ -140,32 +128,24 @@ footer{
   font-size:0.9rem;
   color:#777;
   padding:2rem 1rem;
+  position:relative;
 }
 
-@keyframes fadeIn{
-  from{opacity:0;}
-  to{opacity:1;}
-}
-@keyframes popUp{
-  from{opacity:0; transform:translateY(30px);}
-  to{opacity:1; transform:translateY(0);}
-}
 @keyframes float{
   0%,100%{transform:translateY(0);}
   50%{transform:translateY(-10px);}
 }
 
-/* Sparkle animations */
-.sparkle{
+/* Hearts background animation */
+.heart{
   position:absolute;
-  font-size:1rem;
-  opacity:0.8;
-  animation: sparkleAnim 2s infinite;
+  font-size:1.2rem;
+  animation: heartFloat linear infinite;
+  opacity:0.7;
 }
-@keyframes sparkleAnim{
-  0%{transform:translateY(0) scale(1); opacity:0.8;}
-  50%{transform:translateY(-10px) scale(1.3); opacity:1;}
-  100%{transform:translateY(0) scale(1); opacity:0.8;}
+@keyframes heartFloat{
+  0%{transform:translateY(100vh) rotate(0deg);}
+  100%{transform:translateY(-20vh) rotate(360deg);}
 }
 </style>
 </head>
@@ -173,9 +153,9 @@ footer{
 
 <header>
   <h1>Sidnee 🌸</h1>
+  <p>Your magical corner of love 💖</p>
 </header>
 
-<!-- Home Page -->
 <div id="home" class="page active">
   <p style="text-align:center; font-size:1.2rem;">How are you feeling today?</p>
   <div class="moods">
@@ -221,50 +201,17 @@ footer{
 
 <script>
 const notes = {
-  sad:[
-    "Even on your hardest days, remember your little brother and sister see you as their hero. Their eyes light up whenever you smile at them. They feel your love. Every hug and laugh you give them stays in their hearts. I promise, even when sad, they think you can do anything.",
-    "Every giggle your brother has when you sing Baby Shark is pure joy, and you made it happen.",
-    "Even when you feel invisible, there is always someone who sees you. Someone who sees how special and amazing you are.",
-    "When your eyes are tired, just remember love matters more than words can say.",
-    "It’s okay to cry sometimes. It doesn’t make you weak.",
-    "You matter more than you realize.",
-    "You’re balancing so much, and you’re doing beautifully.",
-    "You are loved more than you know.",
-    "Chik-fil-A cows cheer for you in spirit 🐄",
-    "Even on gloomy days, you’re a sunshine 🌥",
-    "When you feel sad, just remember you’re an amazing sister, Sidnee."
-  ],
-  happy:[
-    "Your laughter is sooooooo contagious.",
-    "I've never seen a kid smile as bright as your brother when you start singing Baby Shark.",
-    "The way you juggle school and jobs is incredible.",
-    "You deserve this happiness, Sidnee!",
-    "Even the busiest days can have joyful moments.",
-    "You have the prettiest smile known to humanity. Please, please keep smiling.",
-    "You make ordinary days special for everyone around you."
-  ],
-  overwhelmed:[
-    "I know it may be hard, but remember to take one breath at a time, Sidnee.",
-    "It’s okay to ask for help if you need it.",
-    "You’ve survived every overwhelming day before, you can do it again.",
-    "I believe in you.",
-    "Sooo many people admire your strength, even if you don’t see it.",
-    "Even small progress is progress.",
-    "When you are overwhelmed, just remember your little brother thinks you’re a hero.",
-    "Remember to smile even through all the challenges."
-  ],
-  tired:[
-    "Rest is not lazy. You deserve it 😴",
-    "Coffee can wait, but your well-being cannot ☕",
-    "Working TWO jobs, being the best sister ever, AND being an academic weapon? Please, please take a break. You deserve time to yourself."
-  ]
+  sad:[ "Even on your hardest days, remember your little brother and sister see you as their hero. Their eyes light up whenever you smile at them. They feel your love. Every hug and laugh you give them stays in their hearts. I promise, even when sad, they think you can do anything.","Every giggle your brother has when you sing Baby Shark is pure joy, and you made it happen.","Even when you feel invisible, there is always someone who sees you. Someone who sees how special and amazing you are.","When your eyes are tired, just remember love matters more than words can say.","It’s okay to cry sometimes. It doesn’t make you weak.","You matter more than you realize.","You’re balancing so much, and you’re doing beautifully.","You are loved more than you know.","Chik-fil-A cows cheer for you in spirit 🐄","Even on gloomy days, you’re a sunshine 🌥","When you feel sad, just remember you’re an amazing sister, Sidnee."],
+  happy:["Your laughter is sooooooo contagious.","I've never seen a kid smile as bright as your brother when you start singing Baby Shark.","The way you juggle school and jobs is incredible.","You deserve this happiness, Sidnee!","Even the busiest days can have joyful moments.","You have the prettiest smile known to humanity. Please, please keep smiling.","You make ordinary days special for everyone around you."],
+  overwhelmed:["I know it may be hard, but remember to take one breath at a time, Sidnee.","It’s okay to ask for help if you need it.","You’ve survived every overwhelming day before, you can do it again.","I believe in you.","Sooo many people admire your strength, even if you don’t see it.","Even small progress is progress.","When you are overwhelmed, just remember your little brother thinks you’re a hero.","Remember to smile even through all the challenges."],
+  tired:["Rest is not lazy. You deserve it 😴","Coffee can wait, but your well-being cannot ☕","Working TWO jobs, being the best sister ever, AND being an academic weapon? Please, please take a break. You deserve time to yourself."]
 };
 
 function showPage(pageId, bgColor) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
   document.body.style.background = bgColor;
-  createSparkles();
+  createHearts();
 }
 
 function showNote(mood) {
@@ -272,6 +219,10 @@ function showNote(mood) {
   const note = noteArray[Math.floor(Math.random() * noteArray.length)];
   const noteCard = document.getElementById('note-' + mood);
   noteCard.innerText = note;
+
+  // cute floating sparkles inside the note
+  noteCard.innerHTML += '<span>✨</span><span>💖</span><span>🌸</span>';
+
   noteCard.style.opacity = 0;
   noteCard.style.transform = 'translateY(20px)';
   setTimeout(() => {
@@ -280,19 +231,18 @@ function showNote(mood) {
   }, 50);
 }
 
-// Cute sparkles
-function createSparkles() {
-  const sparkleCount = 20;
-  const sparkleColors = ['#ffd6e0','#fff7b3','#cce0ff','#d6c1ff','#ffb3c6'];
-  for(let i=0;i<sparkleCount;i++){
-    const sparkle = document.createElement('div');
-    sparkle.className='sparkle';
-    sparkle.style.left=Math.random()*100+'%';
-    sparkle.style.top=Math.random()*100+'%';
-    sparkle.style.color=sparkleColors[Math.floor(Math.random()*sparkleColors.length)];
-    sparkle.style.fontSize=(Math.random()*20+10)+'px';
-    document.body.appendChild(sparkle);
-    setTimeout(()=>{sparkle.remove()},2000+Math.random()*2000);
+// floating hearts background
+function createHearts() {
+  const heartCount = 15;
+  for(let i=0;i<heartCount;i++){
+    const heart = document.createElement('div');
+    heart.className='heart';
+    heart.style.left=Math.random()*100+'%';
+    heart.style.fontSize=(Math.random()*25+15)+'px';
+    heart.style.animationDuration=(Math.random()*5+4)+'s';
+    heart.innerText='💖';
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),8000);
   }
 }
 </script>
