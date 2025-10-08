@@ -168,19 +168,16 @@ footer{
 <script>
 const notes = {
   sad:[
-    "Even on your hardest days, remember your siblings see you as a hero. Their eyes light up whenever you smile because they feel your love. Every hug and laugh you give them stays in their hearts. I promise, even when you are sad, they think you can do anything. And trust me, they are not wrong.",
-    "Every giggle your brother has when you sing Baby Shark is pure joy, and you made it happen.",
-    "Even when you feel invisible, there is always someone who sees you. There is always someone who sees how special and amazing you are.",
+    "Even on your hardest days, remember your siblings see you as a hero.",
+    "Every giggle your brother has when you sing Baby Shark is pure joy.",
+    "Even when you feel invisible, there is always someone who sees you.",
     "When your eyes are tired, just remember love matters more than words can say.",
     "It’s okay to cry sometimes. It doesn’t make you weak.",
-    "It’s okay to cry sometimes. It doesn’t make you weak.",
     "You matter more than you realize.",
-    "You matter more than you realize.",
-    "You’re balancing so much, and you’re doing beautifully.",
     "You’re balancing so much, and you’re doing beautifully.",
     "You are loved more than you know.",
     "Even on gloomy days, you’re a sunshine.",
-    "When you feel sad, just remember you’re an amazing sister, Sidnee."
+    "When you feel sad, just remember you’re amazing, Sidnee."
   ],
   happy:[
     "Your laughter is sooooooo contagious.",
@@ -188,8 +185,7 @@ const notes = {
     "The way you juggle school and jobs is incredible.",
     "You deserve this happiness, Sidnee!",
     "Even the busiest days can have joyful moments.",
-    "You have the prettiest smile known to humanity. Please, please keep smiling.",
-    "You have the prettiest smile known to humanity. Please, please keep smiling.",
+    "You have the prettiest smile known to humanity. Please keep smiling.",
     "You make ordinary days special for everyone around you."
   ],
   overwhelmed:[
@@ -205,8 +201,16 @@ const notes = {
   tired:[
     "Rest is not lazy. You deserve it.",
     "Coffee can wait, but your well-being cannot.",
-    "Working TWO jobs, being the best sister ever, AND being an academic weapon? Please, please take a break. You deserve time to yourself."
+    "Working TWO jobs, being the best sister ever, AND being an academic weapon? Please take a break. You deserve time to yourself."
   ]
+};
+
+// Track the current index for each mood
+const noteIndex = {
+  sad:0,
+  happy:0,
+  overwhelmed:0,
+  tired:0
 };
 
 function showPage(pageId,bgColor){
@@ -216,16 +220,18 @@ function showPage(pageId,bgColor){
 }
 
 function showNote(mood){
-  const arr=notes[mood];
-  const note=arr[Math.floor(Math.random()*arr.length)];
-  const noteCard=document.getElementById('note-'+mood);
-  noteCard.innerText=note;
-  noteCard.style.opacity=0;
-  noteCard.style.transform='translateY(20px)';
+  const arr = notes[mood];
+  const idx = noteIndex[mood];
+  const noteCard = document.getElementById('note-'+mood);
+  noteCard.innerText = arr[idx];
+  noteCard.style.opacity = 0;
+  noteCard.style.transform = 'translateY(20px)';
   setTimeout(()=>{
-    noteCard.style.opacity=1;
-    noteCard.style.transform='translateY(0)';
+    noteCard.style.opacity = 1;
+    noteCard.style.transform = 'translateY(0)';
   },50);
+  // Increment and wrap index
+  noteIndex[mood] = (idx + 1) % arr.length;
 }
 </script>
 
