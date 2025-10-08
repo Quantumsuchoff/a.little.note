@@ -7,25 +7,126 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;}
-body{margin:0;font-family:'Poppins',sans-serif;background: linear-gradient(135deg,#ffe6f0,#fff8e7);transition: background 1s ease;overflow-x:hidden;color:#444;min-height:100vh;}
-header{text-align:center;padding:3rem 1rem 2rem;}
-header h1{font-family:'Dancing Script',cursive;font-size:3rem;margin:0;color:#d94f70;text-shadow:0 2px 5px rgba(0,0,0,0.1);}
-header p{font-size:1.2rem;margin-top:0.5rem;color:#555;}
-.moods{display:flex;flex-wrap:wrap;justify-content:center;margin:2rem 0;gap:1rem;}
-.btn-mood{background:linear-gradient(145deg,#ffb3c6,#ffcce0);border:none;border-radius:50px;padding:1rem 2rem;font-size:1.2rem;cursor:pointer;color:white;font-weight:600;transition:all 0.3s ease;box-shadow:0 5px 20px rgba(0,0,0,0.2);}
-.btn-mood:hover{transform:translateY(-5px) scale(1.1);box-shadow:0 15px 25px rgba(0,0,0,0.3);}
-.page{display:none;padding:2rem 1rem;animation: fadeIn 1s ease;max-width:600px;margin:0 auto;}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background: linear-gradient(135deg,#ffe6f0,#fff8e7);
+  transition: background 1s ease;
+  overflow-x:hidden;
+  color:#444;
+  min-height:100vh;
+}
+header{
+  text-align:center;
+  padding:3rem 1rem 2rem;
+}
+header h1{
+  font-family:'Dancing Script',cursive;
+  font-size:3rem;
+  margin:0;
+  color:#d94f70;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+header p{
+  font-size:1.2rem;
+  margin-top:0.5rem;
+  color:#555;
+}
+.moods{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin:2rem 0;
+  gap:1rem;
+}
+.btn-mood{
+  background:linear-gradient(145deg,#ffb3c6,#ffcce0);
+  border:none;
+  border-radius:50px;
+  padding:1rem 2rem;
+  font-size:1.2rem;
+  cursor:pointer;
+  color:white;
+  font-weight:600;
+  transition:all 0.3s ease;
+  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+.btn-mood:hover{
+  transform:translateY(-5px) scale(1.1);
+  box-shadow:0 15px 25px rgba(0,0,0,0.3);
+}
+.page{
+  display:none;
+  padding:2rem 1rem;
+  animation: fadeIn 1s ease;
+  max-width:600px;
+  margin:0 auto;
+}
 .active{display:block;}
-.note-card{background:#fff;border-radius:25px;padding:2rem;margin:2rem auto;font-size:1.2rem;line-height:1.6;box-shadow:0 12px 25px rgba(0,0,0,0.15);opacity:0;transform:translateY(30px);animation: popUp 0.6s forwards;text-align:center;position:relative;}
-.btn-note{margin-top:1rem;background:#ffd6e0;color:#d94f70;border:none;border-radius:30px;padding:0.8rem 2rem;font-size:1rem;cursor:pointer;font-weight:600;transition:all 0.3s ease;}
-.btn-note:hover{transform:scale(1.1) rotate(-1deg);box-shadow:0 10px 20px rgba(0,0,0,0.2);}
-.btn-back{margin-top:2rem;background:#ffb3c6;color:white;border:none;border-radius:25px;padding:0.6rem 1.5rem;font-size:0.95rem;cursor:pointer;transition:transform 0.3s;}
+.note-card{
+  background:#fff;
+  border-radius:25px;
+  padding:2rem;
+  margin:2rem auto;
+  font-size:1.2rem;
+  line-height:1.6;
+  box-shadow:0 12px 25px rgba(0,0,0,0.15);
+  opacity:0;
+  transform:translateY(30px);
+  animation: popUp 0.6s forwards;
+  text-align:center;
+}
+.btn-note{
+  margin-top:1rem;
+  background:#ffd6e0;
+  color:#d94f70;
+  border:none;
+  border-radius:30px;
+  padding:0.8rem 2rem;
+  font-size:1rem;
+  cursor:pointer;
+  font-weight:600;
+  transition:all 0.3s ease;
+}
+.btn-note:hover{
+  transform:scale(1.1) rotate(-1deg);
+  box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+.btn-back{
+  margin-top:2rem;
+  background:#ffb3c6;
+  color:white;
+  border:none;
+  border-radius:25px;
+  padding:0.6rem 1.5rem;
+  font-size:0.95rem;
+  cursor:pointer;
+  transition:transform 0.3s;
+}
 .btn-back:hover{transform:scale(1.1);}
-footer{text-align:center;font-size:0.9rem;color:#777;padding:2rem 1rem;}
+footer{
+  text-align:center;
+  font-size:0.9rem;
+  color:#777;
+  padding:2rem 1rem;
+}
+#musicControls{
+  text-align:center;
+  margin:1rem 0;
+}
+#musicControls button{
+  padding:0.5rem 1rem;
+  font-size:1rem;
+  margin:0 0.5rem;
+  border:none;
+  border-radius:15px;
+  background:#ffd6e0;
+  color:#d94f70;
+  cursor:pointer;
+  font-weight:600;
+}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes popUp{from{opacity:0; transform:translateY(30px);}to{opacity:1; transform:translateY(0);}}
-#musicControls{text-align:center;margin:1rem 0;}
-#musicControls button{padding:0.5rem 1rem;font-size:1rem;margin:0 0.5rem;border:none;border-radius:15px;background:#ffd6e0;color:#d94f70;cursor:pointer;font-weight:600;}
 </style>
 </head>
 <body>
@@ -41,7 +142,7 @@ footer{text-align:center;font-size:0.9rem;color:#777;padding:2rem 1rem;}
   <button id="stopMusicBtn">Stop Music ⏹️</button>
 </div>
 
-<audio id="bgMusic" loop></audio>
+<audio id="bgMusic" loop preload="auto"></audio>
 
 <!-- Home Page -->
 <div id="home" class="page active">
@@ -113,82 +214,78 @@ const musicTracks = {
 
 const notes = {
   sad:[
-    "Even on your hardest days, remember your little brother sees you as his hero...",
-    "Every giggle your brother has when you sing Baby Shark is pure joy...",
-    "Even when you feel invisible, there is always someone who sees you...",
-    "When your eyes are tired, just remember love matters more than words can say...",
-    "It’s okay to cry sometimes. It doesn’t make you weak...",
-    "You matter more than you realize...",
-    "You’re balancing so much, and you’re doing beautifully...",
-    "You are loved more than you know...",
-    "Chik-fil-A cows cheer for you in spirit...",
-    "Even on gloomy days, you’re a sunshine...",
-    "When you feel sad, just remember you’re an amazing sister, Sidnee..."
+    "Even on your hardest days, remember your little brother sees you as his hero. His eyes light up whenever you smile at him. They feel your love. Every hug and laugh you give them stays in their hearts. I promise, even when sad, your little sister thinks you can do anything.",
+    "Every giggle your brother has when you sing Baby Shark is pure joy, and you made it happen.",
+    "Even when you feel invisible, there is always someone who sees you. There is always someone who sees how special and amazing you are.",
+    "When your eyes are tired, just remember love matters more than words can say.",
+    "It’s okay to cry sometimes. It doesn’t make you weak.",
+    "You matter more than you realize.",
+    "You’re balancing so much, and you’re doing beautifully.",
+    "You are loved more than you know.",
+    "Chik-fil-A cows cheer for you in spirit.",
+    "Even on gloomy days, you’re a sunshine.",
+    "When you feel sad, just remember you’re an amazing sister, Sidnee."
   ],
   happy:[
-    "Your laughter is sooooooo contagious...",
-    "I've never seen a kid smile as bright as your brother when you start singing Baby Shark...",
-    "The way you juggle school and jobs is incredible...",
+    "Your laughter is sooooooo contagious.",
+    "I've never seen a kid smile as bright as your brother when you start singing Baby Shark.",
+    "The way you juggle school and jobs is incredible.",
     "You deserve this happiness, Sidnee!",
-    "Even the busiest days can have joyful moments...",
-    "You have the prettiest smile known to humanity. Please, please keep smiling...",
-    "You make ordinary days special for everyone around you..."
+    "Even the busiest days can have joyful moments.",
+    "You have the prettiest smile known to humanity. Please, please keep smiling.",
+    "You make ordinary days special for everyone around you."
   ],
   overwhelmed:[
-    "I know it may be hard, but remember to take one breath at a time, Sidnee...",
-    "It’s okay to ask for help if you need it...",
-    "You’ve survived every overwhelming day before, you can do it again...",
-    "I believe in you...",
-    "Sooo many people admire your strength, even if you don’t see it...",
-    "Even small progress is progress...",
-    "When you are overwhelmed, just remember your little brother thinks you’re a hero...",
-    "Remember to smile even through all the challenges..."
+    "I know it may be hard, but remember to take one breath at a time, Sidnee.",
+    "It’s okay to ask for help if you need it.",
+    "You’ve survived every overwhelming day before, you can do it again.",
+    "I believe in you.",
+    "Sooo many people admire your strength, even if you don’t see it.",
+    "Even small progress is progress.",
+    "When you are overwhelmed, just remember your little brother thinks you’re a hero.",
+    "Remember to smile even through all the challenges."
   ],
   tired:[
-    "Rest is not lazy. You deserve it...",
-    "Coffee can wait, but your well-being cannot...",
-    "Working TWO jobs, being the best sister ever, AND being an academic weapon? Please, please take a break..."
+    "Rest is not lazy. You deserve it.",
+    "Coffee can wait, but your well-being cannot.",
+    "Working TWO jobs, being the best sister ever, AND being an academic weapon? Please, please take a break. You deserve time to yourself."
   ]
 };
 
 let currentMood = '';
 const bgMusic = document.getElementById('bgMusic');
-const startBtn = document.getElementById('startMusicBtn');
-const stopBtn = document.getElementById('stopMusicBtn');
-
-function playMusic(mood){
-  if(mood && musicTracks[mood]){
-    const tracks = musicTracks[mood];
-    const track = tracks[Math.floor(Math.random() * tracks.length)];
-    bgMusic.src = track;
-    bgMusic.play().catch(e => console.log("Play prevented until user interaction:", e));
-  }
-}
-
-startBtn.onclick = () => {
-  if(currentMood) playMusic(currentMood);
-};
-stopBtn.onclick = () => { bgMusic.pause(); bgMusic.currentTime = 0; };
+const startMusicBtn = document.getElementById('startMusicBtn');
+const stopMusicBtn = document.getElementById('stopMusicBtn');
 
 function showPage(pageId,bgColor,mood){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
-  document.body.style.background = bgColor;
-  currentMood = mood;
+  document.body.style.background=bgColor;
+  currentMood=mood;
+  if(mood && musicTracks[mood]){
+    const track = musicTracks[mood][Math.floor(Math.random()*musicTracks[mood].length)];
+    bgMusic.src=track;
+  }
 }
 
+startMusicBtn.onclick = ()=>{
+  if(bgMusic.src){
+    bgMusic.play().catch(e=>console.log("Play prevented until user interaction",e));
+  } else {
+    alert("Select a mood first!");
+  }
+};
+
+stopMusicBtn.onclick = ()=>{bgMusic.pause(); bgMusic.currentTime=0;};
+
 function showNote(mood){
-  const arr = notes[mood];
-  const note = arr[Math.floor(Math.random() * arr.length)];
-  const noteCard = document.getElementById('note-'+mood);
-  noteCard.innerText = note;
-  noteCard.style.opacity = 0;
-  noteCard.style.transform = 'translateY(20px)';
-  setTimeout(()=>{
-    noteCard.style.opacity = 1;
-    noteCard.style.transform = 'translateY(0)';
-    playMusic(mood); // play new song when note appears
-  },50);
+  const arr=notes[mood];
+  const note=arr[Math.floor(Math.random()*arr.length)];
+  const noteCard=document.getElementById('note-'+mood);
+  noteCard.innerText=note;
+  noteCard.style.opacity=0;
+  noteCard.style.transform='translateY(20px)';
+  setTimeout(()=>{noteCard.style.opacity=1; noteCard.style.transform='translateY(0)';},50);
 }
 </script>
 
