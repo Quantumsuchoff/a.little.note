@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sidnee's Smile Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sidnee’s Little Corner</title>
   <style>
     body {
-      font-family: "Comic Sans MS", "Poppins", sans-serif;
+      font-family: "Poppins", sans-serif;
       background: linear-gradient(to bottom right, #ffe6f0, #fff8e7);
       margin: 0;
       padding: 0;
       text-align: center;
-      color: #444;
+      overflow-x: hidden;
     }
 
     header {
       background-color: #ffd6e0;
       padding: 2rem;
       border-bottom: 4px solid #ffb3c6;
+      animation: fadeDown 1.5s ease;
     }
 
     header h1 {
@@ -26,19 +27,47 @@
       color: #d94f70;
     }
 
-    .message-box {
-      margin: 2rem auto;
-      padding: 1.5rem;
-      max-width: 500px;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      font-size: 1.2rem;
-      line-height: 1.6;
+    header p {
+      margin: .5rem 0 0;
+      color: #444;
     }
 
-    .emoji {
-      font-size: 2rem;
+    .page {
+      display: none;
+      padding: 2rem;
+      animation: fadeIn 1s ease;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .btn {
+      background: #ffb3c6;
+      color: #fff;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      margin: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    .note {
+      background: #fff;
+      padding: 1.5rem;
+      margin: 1rem auto;
+      max-width: 400px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      line-height: 1.6;
+      display: none;
+      animation: popUp 0.6s ease;
     }
 
     footer {
@@ -47,42 +76,81 @@
       color: #777;
       padding-bottom: 1rem;
     }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeDown {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes popUp {
+      from {opacity: 0; transform: scale(0.8);}
+      to {opacity: 1; transform: scale(1);}
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Hey Sidnee 👋</h1>
-    <p>You’ve got this 💪</p>
+    <p>Welcome to your little encouragement corner ✨</p>
   </header>
 
-  <main>
-    <div class="message-box">
-      <p id="message">Loading encouragement...</p>
-      <div class="emoji">🍩☀️🐔</div>
+  <!-- Home Page -->
+  <div id="home" class="page active">
+    <p>Pick how you’re feeling today:</p>
+    <button class="btn" onclick="showPage('sad')">😢 Sad</button>
+    <button class="btn" onclick="showPage('happy')">😊 Happy</button>
+    <button class="btn" onclick="showPage('overwhelmed')">😵 Overwhelmed</button>
+  </div>
+
+  <!-- Sad Page -->
+  <div id="sad" class="page">
+    <h2>When you feel sad 💕</h2>
+    <button class="btn" onclick="showNote('sadNote')">Tap for a note</button>
+    <div id="sadNote" class="note">
+      Even on tough days, you are someone’s reason to smile. You matter. 🌸
     </div>
-  </main>
+    <button class="btn" onclick="showPage('home')">⬅ Back</button>
+  </div>
+
+  <!-- Happy Page -->
+  <div id="happy" class="page">
+    <h2>When you feel happy 🎉</h2>
+    <button class="btn" onclick="showNote('happyNote')">Tap for a note</button>
+    <div id="happyNote" class="note">
+      That smile looks great on you. Keep shining, Sidnee ✨
+    </div>
+    <button class="btn" onclick="showPage('home')">⬅ Back</button>
+  </div>
+
+  <!-- Overwhelmed Page -->
+  <div id="overwhelmed" class="page">
+    <h2>When you feel overwhelmed 🌊</h2>
+    <button class="btn" onclick="showNote('overNote')">Tap for a note</button>
+    <div id="overNote" class="note">
+      Take one breath at a time. You’re stronger than you think 💪
+    </div>
+    <button class="btn" onclick="showPage('home')">⬅ Back</button>
+  </div>
 
   <footer>
-    <p>Made with kindness for you 🌸</p>
+    <p>Made with kindness for you 🌷</p>
   </footer>
 
   <script>
-    const messages = [
-      "You deserve a donut today 🍩",
-      "Chik-fil-A might have the chicken, but you’ve got the strength 🐔💪",
-      "Don’t forget: naps are undefeated 💤",
-      "Early mornings mean early victories 🌅",
-      "You’re stronger than Monday mornings ☕",
-      "Keep shining, Sidnee ✨"
-    ];
-
-    function newMessage() {
-      const random = Math.floor(Math.random() * messages.length);
-      document.getElementById("message").textContent = messages[random];
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
     }
 
-    // Show a new message every time she refreshes
-    newMessage();
+    function showNote(noteId) {
+      const note = document.getElementById(noteId);
+      note.style.display = "block";
+    }
   </script>
 </body>
 </html>
