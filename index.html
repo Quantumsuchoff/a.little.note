@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sidnee's Ultimate Corner 🌸</title>
+<title>Sidnee's Corner 🌸</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;}
@@ -127,7 +127,7 @@
 
 <header>
   <h1>Sidnee 🌸</h1>
-  <p>Welcome to your Ultimate Corner ✨</p>
+  <p>Welcome to your personal corner of encouragement ✨</p>
 </header>
 
 <!-- Home Page -->
@@ -138,7 +138,6 @@
     <button class="btn-mood" onclick="showPage('happy','#fff7b3')">😊 Happy</button>
     <button class="btn-mood" onclick="showPage('overwhelmed','#ffd9b3')">😵 Overwhelmed</button>
     <button class="btn-mood" onclick="showPage('tired','#d6c1ff')">😴 Tired</button>
-    <button class="btn-mood" onclick="showPage('fun','linear-gradient(90deg,#ff9ad6,#fffd7d,#9affb3)')">😂 Fun</button>
   </div>
 </div>
 
@@ -171,133 +170,140 @@
   <button class="btn-back" onclick="showPage('home','#ffe6f0')">⬅ Back</button>
 </div>
 
-<div id="fun" class="page">
-  <h2>Need a laugh 😂</h2>
-  <button class="btn-note" onclick="showNote('fun')">Get a note</button>
-  <div id="note-fun" class="note-card"></div>
-  <button class="btn-back" onclick="showPage('home','#ffe6f0')">⬅ Back</button>
-</div>
-
 <footer>
-  <p>Made with kindness just for you 🌷</p>
+  <p>Made with love just for you 🌷</p>
 </footer>
 
 <script>
 const notes = {
-  sad:[/* 50+ notes for sad including sisterly love, encouragement, donuts, baby shark */ 
-    "Even when the day feels heavy, your smile brightens someone’s world.",
-    "Your little brother loves when you sing Baby Shark 🦈",
-    "You’re an amazing sister, Sidnee. Your siblings look up to you.",
-    "It’s okay to rest. You’re allowed to take a pause.",
-    "Remember: donuts are sweet, but so are you 🍩",
-    "Tough days pass, but your kindness stays.",
-    "Even small victories count. Celebrate them.",
-    "You matter more than you realize.",
-    "The early mornings at the donut shop show your dedication.",
-    "You’re balancing so much, and you’re doing beautifully.",
-    "It’s okay to cry sometimes. It doesn’t make you weak.",
-    "Your laughter is a light in someone’s day.",
-    "The world is better with your kindness in it.",
-    "You inspire those around you just by being you.",
-    "Even on gloomy days, you’re a sunshine 🌥",
-    "Your little brother smiles because of you.",
-    "Baby Shark practice counts as cardio too 🦈",
-    "The donut shop smells better when you’re working 🍩",
-    "Chik-fil-A cows cheer for you in spirit 🐄",
-    "You are loved more than you know."
+  sad:[
+    "Even on heavy days, your smile is a light for your siblings.",
+    "You’re allowed to pause, breathe, and rest. It doesn’t make you weak.",
+    "Your kindness is unmatched — someone notices, even when you think they don’t.",
+    "Early mornings at the donut shop show your dedication. You’re remarkable.",
+    "Singing Baby Shark to your little brother is a gift he’ll never forget.",
+    "Chik-fil-A cows would cheer if they could — that’s how proud the world should be of you.",
+    "Your perseverance inspires more than you know.",
+    "Even the hardest day can’t take away your warmth and care.",
+    "You make life sweeter, just like the donuts you sell 🍩",
+    "You are enough exactly as you are.",
+    "Your siblings’ happiness is proof of your love.",
+    "Hard days are temporary; your goodness is permanent.",
+    "Your laughter, even faint, lights up a room.",
+    "Rest is a superpower, don’t forget to use it.",
+    "Every act of care you give is a seed planted in someone’s heart.",
+    "You are more capable than you feel right now.",
+    "Your patience with family is admirable.",
+    "Even small smiles count. Keep giving them.",
+    "The world benefits from your presence every day.",
+    "You deserve comfort and kindness, starting with yourself.",
+    "Your early mornings show courage that can’t be measured.",
+    "No task is too big when you approach it with heart.",
+    "Every day you choose love is a day the world is better.",
+    "Donuts and chicken aside, your care is the real treat.",
+    "You matter, deeply, to those around you.",
+    "Your laughter is medicine, even if rare today.",
+    "It’s okay to feel tired; your heart is strong regardless.",
+    "Little gestures, like singing for your brother, are heroic.",
+    "Chik-fil-A and donut shop grinds are tough; you’re tougher.",
+    "You are appreciated in ways you might not see.",
+    "Your heart notices what others miss.",
+    "Hard work doesn’t go unseen, Sidnee.",
+    "Even when sad, your light persists.",
+    "Your siblings’ trust in you is a testament to your love.",
+    "You inspire without trying.",
+    "Challenges today are shaping strength for tomorrow.",
+    "Your voice, singing Baby Shark, is joy incarnate.",
+    "Kindness isn’t loud but powerful — like yours.",
+    "Even when invisible, your impact is massive.",
+    "You deserve warmth, care, and a soft moment.",
+    "Your commitment is awe-inspiring.",
+    "Small victories today are huge in your story.",
+    "Your heart is courageous and tender simultaneously.",
+    "Life is better because you exist.",
+    "It’s okay to cry, it doesn’t diminish your power.",
+    "The world would be dimmer without your spark.",
+    "You are loved beyond measure.",
+    "Even the toughest mornings are proof of your resilience.",
+    "Your care creates ripples of happiness."
   ],
-  happy:[/* 50+ happy notes with encouragement, donuts, sibling love, Chik-fil-A jokes */
-    "Your happiness is contagious 🌟",
-    "You bring sunshine to your family’s day.",
-    "Keep being your amazing, hardworking self.",
-    "Your laughter makes the early mornings sweeter.",
-    "Even the busiest days can have joyful moments.",
-    "You deserve this happiness, Sidnee!",
-    "Your siblings love having you as a role model.",
-    "The way you juggle school and jobs is incredible.",
-    "Every smile you share spreads warmth.",
-    "You’re amazing at making people feel cared for.",
-    "Celebrate the small joys today!",
-    "Your energy makes the world brighter.",
-    "Even busy days have moments of fun.",
-    "You make ordinary days special for everyone around you.",
-    "Keep glowing!",
-    "Chik-fil-A chicken never looked as good as your determination 🍗",
-    "Sprinkle donuts bow to your awesomeness 🍩",
-    "Baby Shark dance competitions with your brother are legendary 🦈",
-    "You’re the reason your siblings smile.",
-    "Your hard work shines brighter than any sun 🌞"
+  happy:[
+    "Your laughter is contagious, brightening every room.",
+    "Little smiles, like those from your siblings, reflect your love.",
+    "Balancing work and school with joy is a superpower.",
+    "You bring light into early mornings at the donut shop.",
+    "Every act of kindness today is a triumph.",
+    "Your joy is deserved and celebrated.",
+    "Even Chik-fil-A chickens would cheer for you 🍗",
+    "Baby Shark dances with your brother are pure gold 🦈",
+    "Your smile makes mundane tasks feel magical.",
+    "You shine brighter than the sunrise you wake up to.",
+    "Every compliment you receive is a reflection of your effort.",
+    "Your humor makes life lighter for those around you.",
+    "Small moments, like a shared strawberry, are treasures.",
+    "You deserve happiness for all your hard work.",
+    "Every day you choose joy, the world becomes sweeter.",
+    "Your presence uplifts, even quietly.",
+    "Celebrating small wins is a reflection of your strength.",
+    "Donuts today taste sweeter because of you 🍩",
+    "Your positivity is powerful and inspiring.",
+    "Family moments reflect your heart’s warmth.",
+    "Your laughter echoes beyond the moment.",
+    "Even busy mornings hold magic with your smile.",
+    "Your hard work deserves celebration today.",
+    "Your joy is a seed that spreads.",
+    "Every smile you give returns tenfold.",
+    "Your dedication and happiness coexist beautifully.",
+    "The world is brighter because of your heart.",
+    "You deserve recognition for your kindness.",
+    "Moments of happiness are proof of your impact.",
+    "Your spirit radiates in subtle and grand ways.",
+    "Even chores feel lighter with your optimism.",
+    "You inspire others to find joy.",
+    "Your siblings’ smiles reflect your care.",
+    "Hard work paired with joy is a rare gift.",
+    "Your confidence today shines naturally.",
+    "Every giggle and laugh is a blessing.",
+    "You create happiness wherever you go.",
+    "Your heart’s light is undeniable.",
+    "You deserve everything that brings delight.",
+    "Your kindness and happiness are intertwined.",
+    "Even small gestures create massive joy.",
+    "Your bright energy is irreplaceable.",
+    "The love you give returns abundantly.",
+    "You are a beacon of positivity.",
+    "Joyful moments validate your efforts.",
+    "Your laughter is proof of resilience.",
+    "Every day holds magic because of you.",
+    "You are cherished and appreciated."
   ],
-  overwhelmed:[/* 50+ notes about breathing, encouragement, humor, Chik-fil-A */ 
-    "Take one breath at a time, Sidnee.",
-    "Even superheroes need breaks 💪",
-    "Focus on one task at a time, you’ve got this.",
-    "It’s okay to ask for help if you need it.",
-    "You’ve survived every overwhelming day before, you can do it again.",
-    "Remember to smile even through chaos.",
-    "Your perseverance is inspiring.",
-    "The world admires your strength, even if you don’t see it.",
-    "Take a moment for yourself, even a minute counts.",
-    "Deep breaths. You are enough.",
-    "Chik-fil-A line may be long, but your patience is longer 🍗",
-    "Donuts can wait, your sanity cannot 🍩",
-    "Baby Shark renditions are valid stress relief 🦈",
-    "Your little brother thinks you’re a hero.",
-    "Even small progress is progress."
-  ],
-  tired:[/* 50+ notes about rest, early mornings, family, donuts, Chik-fil-A */ 
-    "Rest is not lazy. You deserve it 😴",
-    "Early mornings show your dedication and heart.",
-    "Coffee can wait, but your well-being cannot ☕",
-    "Your resilience amazes everyone.",
-    "Even when tired, you make a difference.",
-    "You’re an inspiration juggling two jobs and school.",
-    "Your siblings look up to your dedication.",
-    "Naps are undefeated. Don’t forget that.",
-    "A tired body, but a strong heart.",
-    "You’ve got this. Slowly but surely.",
-    "Chik-fil-A morning shifts salute your effort 🍗",
-    "Donuts taste sweeter after work 🍩",
-    "Baby Shark lullabies count as extra energy 🦈",
-    "Every sunrise is a reminder of your strength.",
-    "Even heroes need sleep."
-  ],
-  fun:[/* 50+ silly/funny notes */ 
-    "Even Chik-fil-A cows would cheer for you 🐄🍗",
-    "You’re sweeter than a sprinkle donut 🍩",
-    "Baby Shark karaoke champion 🦈",
-    "Your little brother’s strawberry obsession is your superpower 🍓",
-    "Donuts bow before your greatness",
-    "Chik-fil-A chicken has nothing on your dedication 🍗",
-    "Singing Baby Shark is a valid cardio workout",
-    "Your smile makes even Mondays fun",
-    "Early morning donuts taste like victory",
-    "Sprinkles can’t compete with your sparkle ✨",
-    "You make chaos look cute",
-    "Laughter is your secret weapon",
-    "Even tired mornings can have giggles",
-    "Your jokes are worth more than donuts",
-    "You brighten the world like strawberry jam 🍓"
-  ]
-};
-
-function showPage(pageId,color){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(pageId).classList.add('active');
-  document.body.style.background = color;
-  // clear note
-  const noteDivs=document.querySelectorAll('.note-card');
-  noteDivs.forEach(n=>n.style.opacity=0);
-  noteDivs.forEach(n=>n.innerHTML='');
-}
-
-function showNote(mood){
-  const noteDiv=document.getElementById(`note-${mood}`);
-  const moodNotes=notes[mood];
-  const randomIndex=Math.floor(Math.random()*moodNotes.length);
-  noteDiv.innerHTML=moodNotes[randomIndex];
-  noteDiv.style.opacity=1;
-}
-</script>
-</body>
-</html>
+  overwhelmed:[
+    "Take one deep breath; you are capable beyond measure.",
+    "Even when tasks pile up, your calm mind can handle them.",
+    "You’ve faced bigger challenges; you can manage today.",
+    "Remember: breaks are productive, not lazy.",
+    "Each step forward, however small, is meaningful.",
+    "Chik-fil-A lines might be long, but your patience is unmatched.",
+    "Donut shop mornings are hard; your strength is harder.",
+    "Your siblings see your dedication, even when tired.",
+    "Focus on one thing at a time; progress is cumulative.",
+    "It’s okay to ask for support; strength isn’t solitary.",
+    "You’re doing better than you think, Sidnee.",
+    "Even overwhelmed, your heart leads the way.",
+    "Small wins today are proof of capability.",
+    "Breathe slowly; clarity follows calm.",
+    "Your laughter can still peek through stress.",
+    "You inspire even in moments of chaos.",
+    "Tasks may stack, but your mind stacks resilience higher.",
+    "Donuts can wait; your peace is priority.",
+    "Baby Shark singalongs can reset your energy.",
+    "Your care is powerful even in busyness.",
+    "Even tiny progress is proof of your strength.",
+    "Prioritize what matters most to you today.",
+    "You’re allowed to slow down without guilt.",
+    "Your persistence today is admirable.",
+    "The world is brighter because of your efforts.",
+    "Even when stressed, your kindness remains.",
+    "You can handle this, one step at a time.",
+    "Your heart and mind are stronger than chaos.",
+    "Challenges today won
