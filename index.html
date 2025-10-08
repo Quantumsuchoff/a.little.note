@@ -104,21 +104,6 @@ header p{
   transition:transform 0.3s;
 }
 .btn-back:hover{transform:scale(1.1);}
-#musicControls{
-  text-align:center;
-  margin:1rem 0;
-}
-#musicControls button{
-  padding:0.5rem 1rem;
-  font-size:1rem;
-  margin:0 0.5rem;
-  border:none;
-  border-radius:15px;
-  background:#ffd6e0;
-  color:#d94f70;
-  cursor:pointer;
-  font-weight:600;
-}
 footer{
   text-align:center;
   font-size:0.9rem;
@@ -135,17 +120,6 @@ footer{
   <h1>Sidnee's Corner 🌸</h1>
   <p>Welcome to your personal corner of encouragement</p>
 </header>
-
-<!-- Music Controls -->
-<div id="musicControls">
-  <button id="startMusicBtn">Start Music 🎵</button>
-  <button id="stopMusicBtn">Stop Music ⏹️</button>
-</div>
-
-<audio id="bgMusic" loop>
-  <source src="https://www.mfiles.co.uk/mp3-downloads/beethoven-fur-elise.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
 
 <!-- Home Page -->
 <div id="home" class="page active">
@@ -231,13 +205,6 @@ const notes = {
     "Working TWO jobs, being the best sister ever, AND being an academic weapon? Please, please take a break. You deserve time to yourself."
   ]
 };
-
-const bgMusic = document.getElementById('bgMusic');
-const startMusicBtn = document.getElementById('startMusicBtn');
-const stopMusicBtn = document.getElementById('stopMusicBtn');
-
-startMusicBtn.onclick = () => bgMusic.play();
-stopMusicBtn.onclick = () => bgMusic.pause();
 
 function showPage(pageId,bgColor){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
