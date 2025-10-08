@@ -1,242 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sidnee's Magical Corner 🌸</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;margin:0;padding:0;}
-body{
-  font-family:'Poppins',sans-serif;
-  overflow-x:hidden;
-  color:#444;
-  transition: background 1s ease;
-  min-height:100vh;
-  position:relative;
-}
-
-/* header */
-header{
-  text-align:center;
-  padding:3rem 1rem 2rem;
-}
-header h1{
-  font-family:'Dancing Script',cursive;
-  font-size:3rem;
-  color:#d94f70;
-  animation: float 3s ease-in-out infinite;
-  text-shadow:0 2px 5px rgba(0,0,0,0.1);
-}
-header p{
-  font-size:1.2rem;
-  color:#555;
-  margin-top:0.5rem;
-}
-
-/* mood buttons */
-.moods{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  margin:2rem 0;
-  gap:1rem;
-}
-.btn-mood{
-  background:linear-gradient(145deg,#ffb3c6,#ffcce0);
-  border:none;
-  border-radius:50px;
-  padding:1rem 2rem;
-  font-size:1.2rem;
-  cursor:pointer;
-  color:white;
-  font-weight:600;
-  box-shadow:0 5px 20px rgba(0,0,0,0.2);
-  position:relative;
-  transition:all 0.3s ease;
-}
-.btn-mood:hover{
-  transform:scale(1.1);
-  animation: glow 1s infinite alternate;
-}
-@keyframes glow{
-  0%{box-shadow:0 10px 20px rgba(255,180,198,0.6);}
-  100%{box-shadow:0 15px 25px rgba(255,180,198,1);}
-}
-
-/* pages */
-.page{
-  display:none;
-  padding:2rem 1rem;
-  max-width:600px;
-  margin:0 auto;
-}
-.active{display:block;}
-
-/* notes */
-.note-card{
-  background:#fff;
-  border-radius:25px;
-  padding:2rem;
-  margin:2rem auto;
-  font-size:1.2rem;
-  line-height:1.6;
-  box-shadow:0 12px 25px rgba(0,0,0,0.15);
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-.note-card span{
-  position:absolute;
-  font-size:0.8rem;
-  opacity:0.7;
-  animation: floatUp 3s linear infinite;
-}
-@keyframes floatUp{
-  0%{transform:translateY(100%);}
-  100%{transform:translateY(-100%);}
-}
-
-/* buttons */
-.btn-note{
-  margin-top:1rem;
-  background:#ffd6e0;
-  color:#d94f70;
-  border:none;
-  border-radius:30px;
-  padding:0.8rem 2rem;
-  font-size:1rem;
-  cursor:pointer;
-  font-weight:600;
-  transition:all 0.3s ease;
-}
-.btn-note:hover{
-  transform:scale(1.1) rotate(-1deg);
-  box-shadow:0 10px 20px rgba(0,0,0,0.2);
-}
-.btn-back{
-  margin-top:2rem;
-  background:#ffb3c6;
-  color:white;
-  border:none;
-  border-radius:25px;
-  padding:0.6rem 1.5rem;
-  font-size:0.95rem;
-  cursor:pointer;
-  transition:transform 0.3s;
-}
-.btn-back:hover{transform:scale(1.1);}
-
-/* footer */
-footer{
-  text-align:center;
-  font-size:0.9rem;
-  color:#777;
-  padding:2rem 1rem;
-  position:relative;
-}
-
-/* floating animations */
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-
-/* mood emojis animation */
-.emoji{
-  position:absolute;
-  animation: floatEmoji linear infinite;
-}
-@keyframes floatEmoji{
-  0%{transform:translateY(100vh) rotate(0deg);}
-  100%{transform:translateY(-20vh) rotate(360deg);}
-}
-
-/* confetti */
-.confetti{
-  position:absolute;
-  animation: fall linear forwards;
-  pointer-events:none;
-  font-size:1.2rem;
-  opacity:0.9;
-}
-@keyframes fall{
-  0%{transform:translateY(-10vh) rotate(0deg);}
-  100%{transform:translateY(110vh) rotate(360deg);}
-}
-</style>
-</head>
-<body>
-
-<header>
-  <h1>Sidnee 🌸</h1>
-  <p>Welcome to your magical corner 💖</p>
-</header>
-
-<div id="home" class="page active">
-  <p style="text-align:center; font-size:1.2rem;">How are you feeling today?</p>
-  <div class="moods">
-    <button class="btn-mood" onclick="showPage('sad','#cce0ff','💧🌧️')">😢 Sad</button>
-    <button class="btn-mood" onclick="showPage('happy','#fff7b3','🌞✨')">😊 Happy</button>
-    <button class="btn-mood" onclick="showPage('overwhelmed','#ffd9b3','🌊💦')">😵 Overwhelmed</button>
-    <button class="btn-mood" onclick="showPage('tired','#d6c1ff','😴💤')">😴 Tired</button>
-  </div>
-</div>
-
-<div id="sad" class="page">
-  <h2>Feeling a bit sad 💕</h2>
-  <button class="btn-note" onclick="showNote('sad')">Get a note</button>
-  <div id="note-sad" class="note-card"></div>
-  <button class="btn-back" onclick="showPage('home','#ffe6f0')">⬅ Back</button>
-</div>
-
-<div id="happy" class="page">
-  <h2>Feeling happy today 🎉</h2>
-  <button class="btn-note" onclick="showNote('happy')">Get a note</button>
-  <div id="note-happy" class="note-card"></div>
-  <button class="btn-back" onclick="showPage('home','#ffe6f0')">⬅ Back</button>
-</div>
-
-<div id="overwhelmed" class="page">
-  <h2>Feeling overwhelmed 🌊</h2>
-  <button class="btn-note" onclick="showNote('overwhelmed')">Get a note</button>
-  <div id="note-overwhelmed" class="note-card"></div>
-  <button class="btn-back" onclick="showPage('home','#ffe6f0')">⬅ Back</button>
-</div>
-
-<div id="tired" class="page">
-  <h2>Feeling tired 😴</h2>
-  <button class="btn-note" onclick="showNote('tired')">Get a note</button>
-  <div id="note-tired" class="note-card"></div>
-  <button class="btn-back" onclick="showPage('home','#ffe6f0')">⬅ Back</button>
-</div>
-
-<footer>
-  <p>Made with love just for you 🌷</p>
-</footer>
-
-<audio id="bgMusic" loop autoplay>
-  <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
-</audio>
-
 <script>
 const notes = {
   sad:[
-    "Even on your hardest days, your little brother sees you as their hero 💧",
-    "It’s okay to cry sometimes, it doesn’t make you weak.",
-    "You are loved more than you know 🌧️"
+    "Even on your hardest days, remember your little brother sees you as his hero. His eyes light up whenever you smile at him. They feel your love. Every hug and laugh you give them stays in their hearts. I promise, even when sad, your little sister thinks you can do anything 💧",
+    "Every giggle your brother has when you sing Baby Shark is pure joy, and you made it happen 💧",
+    "Even when you feel invisible, there is always someone who sees you. There is always someone who sees how special and amazing you are 💧",
+    "When your eyes are tired, just remember love matters more than words can say 💧",
+    "It’s okay to cry sometimes. It doesn’t make you weak 💧",
+    "You matter more than you realize 💧",
+    "You’re balancing so much, and you’re doing beautifully 💧",
+    "You are loved more than you know 💧",
+    "Chik-fil-A cows cheer for you in spirit 🐄",
+    "Even on gloomy days, you’re a sunshine 🌥",
+    "When you feel sad, just remember you’re an amazing sister, Sidnee 💧"
   ],
   happy:[
-    "Your laughter is so contagious 🌞",
-    "You deserve this happiness ✨",
-    "You make ordinary days special for everyone around you"
+    "Your laughter is sooooooo contagious 🌞",
+    "I've never seen a kid smile as bright as your brother when you start singing Baby Shark 🌞",
+    "The way you juggle school and jobs is incredible 🌞",
+    "You deserve this happiness, Sidnee! ✨",
+    "Even the busiest days can have joyful moments ✨",
+    "You have the prettiest smile known to humanity. Please, please keep smiling 🌞",
+    "You make ordinary days special for everyone around you ✨"
   ],
   overwhelmed:[
-    "Take one breath at a time 🌊",
-    "Even small progress is progress 💦",
-    "You’ve survived every overwhelming day before"
+    "I know it may be hard, but remember to take one breath at a time, Sidnee 🌊",
+    "It’s okay to ask for help if you need it 🌊",
+    "You’ve survived every overwhelming day before, you can do it again 🌊",
+    "I believe in you 🌊",
+    "Sooo many people admire your strength, even if you don’t see it 🌊",
+    "Even small progress is progress 🌊",
+    "When you are overwhelmed, just remember your little brother thinks you’re a hero 🌊",
+    "Remember to smile even through all the challenges 🌊"
   ],
   tired:[
-    "Rest is not lazy 😴",
-    "Coffee can wait, your well-being comes first 💤",
-    "You deserve time to yourself"
+    "Rest is not lazy. You deserve it 😴",
+    "Coffee can wait, but your well-being cannot ☕",
+    "Working TWO jobs, being the best sister ever, AND being an academic weapon? Please, please take a break. You deserve time to yourself 😴"
   ]
 };
 
@@ -293,5 +92,3 @@ function createConfetti(){
   }
 }
 </script>
-</body>
-</html>
