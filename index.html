@@ -9,17 +9,17 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{
   font-family:'Poppins',sans-serif;
-  background: linear-gradient(135deg,#ffe6f0,#fff8e7);
   overflow-x:hidden;
   color:#444;
   transition: background 1s ease;
-  position:relative;
   min-height:100vh;
+  position:relative;
 }
+
+/* header */
 header{
   text-align:center;
   padding:3rem 1rem 2rem;
-  position:relative;
 }
 header h1{
   font-family:'Dancing Script',cursive;
@@ -33,6 +33,8 @@ header p{
   color:#555;
   margin-top:0.5rem;
 }
+
+/* mood buttons */
 .moods{
   display:flex;
   flex-wrap:wrap;
@@ -49,13 +51,12 @@ header p{
   cursor:pointer;
   color:white;
   font-weight:600;
-  transition:all 0.3s ease;
   box-shadow:0 5px 20px rgba(0,0,0,0.2);
   position:relative;
+  transition:all 0.3s ease;
 }
 .btn-mood:hover{
   transform:scale(1.1);
-  box-shadow:0 15px 25px rgba(0,0,0,0.3);
   animation: glow 1s infinite alternate;
 }
 @keyframes glow{
@@ -63,6 +64,7 @@ header p{
   100%{box-shadow:0 15px 25px rgba(255,180,198,1);}
 }
 
+/* pages */
 .page{
   display:none;
   padding:2rem 1rem;
@@ -71,6 +73,7 @@ header p{
 }
 .active{display:block;}
 
+/* notes */
 .note-card{
   background:#fff;
   border-radius:25px;
@@ -94,6 +97,7 @@ header p{
   100%{transform:translateY(-100%);}
 }
 
+/* buttons */
 .btn-note{
   margin-top:1rem;
   background:#ffd6e0;
@@ -123,6 +127,7 @@ header p{
 }
 .btn-back:hover{transform:scale(1.1);}
 
+/* footer */
 footer{
   text-align:center;
   font-size:0.9rem;
@@ -131,19 +136,15 @@ footer{
   position:relative;
 }
 
-@keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-10px);}
-}
+/* floating animations */
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 
-/* Hearts background animation */
-.heart{
+/* mood emojis animation */
+.emoji{
   position:absolute;
-  font-size:1.2rem;
-  animation: heartFloat linear infinite;
-  opacity:0.7;
+  animation: floatEmoji linear infinite;
 }
-@keyframes heartFloat{
+@keyframes floatEmoji{
   0%{transform:translateY(100vh) rotate(0deg);}
   100%{transform:translateY(-20vh) rotate(360deg);}
 }
@@ -153,20 +154,19 @@ footer{
 
 <header>
   <h1>Sidnee 🌸</h1>
-  <p>Your magical corner of love 💖</p>
+  <p>Welcome to your magical corner 💖</p>
 </header>
 
 <div id="home" class="page active">
   <p style="text-align:center; font-size:1.2rem;">How are you feeling today?</p>
   <div class="moods">
-    <button class="btn-mood" onclick="showPage('sad','#cce0ff')">😢 Sad</button>
-    <button class="btn-mood" onclick="showPage('happy','#fff7b3')">😊 Happy</button>
-    <button class="btn-mood" onclick="showPage('overwhelmed','#ffd9b3')">😵 Overwhelmed</button>
-    <button class="btn-mood" onclick="showPage('tired','#d6c1ff')">😴 Tired</button>
+    <button class="btn-mood" onclick="showPage('sad','#cce0ff','💧🌧️')">😢 Sad</button>
+    <button class="btn-mood" onclick="showPage('happy','#fff7b3','🌞✨')">😊 Happy</button>
+    <button class="btn-mood" onclick="showPage('overwhelmed','#ffd9b3','🌊💦')">😵 Overwhelmed</button>
+    <button class="btn-mood" onclick="showPage('tired','#d6c1ff','😴💤')">😴 Tired</button>
   </div>
 </div>
 
-<!-- Mood Pages -->
 <div id="sad" class="page">
   <h2>Feeling a bit sad 💕</h2>
   <button class="btn-note" onclick="showNote('sad')">Get a note</button>
@@ -201,48 +201,64 @@ footer{
 
 <script>
 const notes = {
-  sad:[ "Even on your hardest days, remember your little brother and sister see you as their hero. Their eyes light up whenever you smile at them. They feel your love. Every hug and laugh you give them stays in their hearts. I promise, even when sad, they think you can do anything.","Every giggle your brother has when you sing Baby Shark is pure joy, and you made it happen.","Even when you feel invisible, there is always someone who sees you. Someone who sees how special and amazing you are.","When your eyes are tired, just remember love matters more than words can say.","It’s okay to cry sometimes. It doesn’t make you weak.","You matter more than you realize.","You’re balancing so much, and you’re doing beautifully.","You are loved more than you know.","Chik-fil-A cows cheer for you in spirit 🐄","Even on gloomy days, you’re a sunshine 🌥","When you feel sad, just remember you’re an amazing sister, Sidnee."],
-  happy:["Your laughter is sooooooo contagious.","I've never seen a kid smile as bright as your brother when you start singing Baby Shark.","The way you juggle school and jobs is incredible.","You deserve this happiness, Sidnee!","Even the busiest days can have joyful moments.","You have the prettiest smile known to humanity. Please, please keep smiling.","You make ordinary days special for everyone around you."],
-  overwhelmed:["I know it may be hard, but remember to take one breath at a time, Sidnee.","It’s okay to ask for help if you need it.","You’ve survived every overwhelming day before, you can do it again.","I believe in you.","Sooo many people admire your strength, even if you don’t see it.","Even small progress is progress.","When you are overwhelmed, just remember your little brother thinks you’re a hero.","Remember to smile even through all the challenges."],
-  tired:["Rest is not lazy. You deserve it 😴","Coffee can wait, but your well-being cannot ☕","Working TWO jobs, being the best sister ever, AND being an academic weapon? Please, please take a break. You deserve time to yourself."]
+  sad:[
+    "Even on your hardest days, your little brother sees you as their hero 💧",
+    "It’s okay to cry sometimes, it doesn’t make you weak.",
+    "You are loved more than you know 🌧️"
+  ],
+  happy:[
+    "Your laughter is so contagious 🌞",
+    "You deserve this happiness ✨",
+    "You make ordinary days special for everyone around you"
+  ],
+  overwhelmed:[
+    "Take one breath at a time 🌊",
+    "Even small progress is progress 💦",
+    "You’ve survived every overwhelming day before"
+  ],
+  tired:[
+    "Rest is not lazy 😴",
+    "Coffee can wait, your well-being comes first 💤",
+    "You deserve time to yourself"
+  ]
 };
 
-function showPage(pageId, bgColor) {
+let currentEmojis = '';
+
+function showPage(pageId, bgColor, emojis) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
   document.body.style.background = bgColor;
-  createHearts();
+  currentEmojis = emojis;
+  createEmojis();
 }
 
-function showNote(mood) {
+function showNote(mood){
   const noteArray = notes[mood];
-  const note = noteArray[Math.floor(Math.random() * noteArray.length)];
+  const note = noteArray[Math.floor(Math.random()*noteArray.length)];
   const noteCard = document.getElementById('note-' + mood);
   noteCard.innerText = note;
 
-  // cute floating sparkles inside the note
-  noteCard.innerHTML += '<span>✨</span><span>💖</span><span>🌸</span>';
-
+  // add floating emojis inside note
+  noteCard.innerHTML += '<span>'+currentEmojis.split('').join('</span><span>')+'</span>';
   noteCard.style.opacity = 0;
   noteCard.style.transform = 'translateY(20px)';
-  setTimeout(() => {
-    noteCard.style.opacity = 1;
-    noteCard.style.transform = 'translateY(0)';
-  }, 50);
+  setTimeout(()=>{noteCard.style.opacity=1; noteCard.style.transform='translateY(0)';},50);
 }
 
-// floating hearts background
-function createHearts() {
-  const heartCount = 15;
-  for(let i=0;i<heartCount;i++){
-    const heart = document.createElement('div');
-    heart.className='heart';
-    heart.style.left=Math.random()*100+'%';
-    heart.style.fontSize=(Math.random()*25+15)+'px';
-    heart.style.animationDuration=(Math.random()*5+4)+'s';
-    heart.innerText='💖';
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),8000);
+function createEmojis(){
+  // remove old emojis
+  document.querySelectorAll('.emoji').forEach(e=>e.remove());
+
+  for(let i=0;i<25;i++){
+    const emoji = document.createElement('div');
+    emoji.className='emoji';
+    emoji.style.left = Math.random()*100+'%';
+    emoji.style.fontSize = (Math.random()*25+15)+'px';
+    emoji.style.animationDuration = (Math.random()*5+4)+'s';
+    emoji.innerText = currentEmojis[Math.floor(Math.random()*currentEmojis.length)];
+    document.body.appendChild(emoji);
+    setTimeout(()=>emoji.remove(),8000);
   }
 }
 </script>
