@@ -141,16 +141,18 @@ footer {
   <button id="stopMusicBtn">Stop Music ⏹️</button>
 </div>
 
-<audio id="bgMusic" loop></audio>
+<audio id="bgMusic" loop>
+  <source src="https://www.mfiles.co.uk/mp3-downloads/beethoven-fur-elise.mp3" type="audio/mpeg">
+</audio>
 
 <!-- Home Page -->
 <div id="home" class="page active">
   <p style="text-align:center; font-size:1.2rem;">How are you feeling today?</p>
   <div class="moods">
-    <button class="btn-mood" onclick="showPage('sad','#cce0ff','sad')">😢 Sad</button>
-    <button class="btn-mood" onclick="showPage('happy','#fff7b3','happy')">😊 Happy</button>
-    <button class="btn-mood" onclick="showPage('overwhelmed','#ffd9b3','overwhelmed')">😵 Overwhelmed</button>
-    <button class="btn-mood" onclick="showPage('tired','#d6c1ff','tired')">😴 Tired</button>
+    <button class="btn-mood" onclick="showPage('sad','#cce0ff')">😢 Sad</button>
+    <button class="btn-mood" onclick="showPage('happy','#fff7b3')">😊 Happy</button>
+    <button class="btn-mood" onclick="showPage('overwhelmed','#ffd9b3')">😵 Overwhelmed</button>
+    <button class="btn-mood" onclick="showPage('tired','#d6c1ff')">😴 Tired</button>
   </div>
 </div>
 
@@ -159,28 +161,28 @@ footer {
   <h2>Feeling a bit sad</h2>
   <button class="btn-note" onclick="showNote('sad')">Get a note</button>
   <div id="note-sad" class="note-card"></div>
-  <button class="btn-back" onclick="showPage('home','#ffe6f0','')">⬅ Back</button>
+  <button class="btn-back" onclick="showPage('home','#ffe6f0')">⬅ Back</button>
 </div>
 
 <div id="happy" class="page">
   <h2>Feeling happy today</h2>
   <button class="btn-note" onclick="showNote('happy')">Get a note</button>
   <div id="note-happy" class="note-card"></div>
-  <button class="btn-back" onclick="showPage('home','#ffe6f0','')">⬅ Back</button>
+  <button class="btn-back" onclick="showPage('home','#ffe6f0')">⬅ Back</button>
 </div>
 
 <div id="overwhelmed" class="page">
   <h2>Feeling overwhelmed</h2>
   <button class="btn-note" onclick="showNote('overwhelmed')">Get a note</button>
   <div id="note-overwhelmed" class="note-card"></div>
-  <button class="btn-back" onclick="showPage('home','#ffe6f0','')">⬅ Back</button>
+  <button class="btn-back" onclick="showPage('home','#ffe6f0')">⬅ Back</button>
 </div>
 
 <div id="tired" class="page">
   <h2>Feeling tired</h2>
   <button class="btn-note" onclick="showNote('tired')">Get a note</button>
   <div id="note-tired" class="note-card"></div>
-  <button class="btn-back" onclick="showPage('home','#ffe6f0','')">⬅ Back</button>
+  <button class="btn-back" onclick="showPage('home','#ffe6f0')">⬅ Back</button>
 </div>
 
 <footer>
@@ -188,30 +190,6 @@ footer {
 </footer>
 
 <script>
-// Music tracks (MP3 links)
-const musicTracks = {
-  sad: [
-    'https://www.mfiles.co.uk/mp3-downloads/beethoven-fur-elise.mp3',
-    'https://www.mfiles.co.uk/mp3-downloads/chopin-nocturne-op-9-no-2.mp3',
-    'https://www.mfiles.co.uk/mp3-downloads/mahler-adagietto.mp3'
-  ],
-  happy: [
-    'https://www.mfiles.co.uk/mp3-downloads/bach-brandenburg-2.mp3',
-    'https://www.mfiles.co.uk/mp3-downloads/vivaldi-spring.mp3',
-    'https://www.mfiles.co.uk/mp3-downloads/mozart-piano-concerto-17.mp3'
-  ],
-  overwhelmed: [
-    'https://www.mfiles.co.uk/mp3-downloads/stravinsky-firebird.mp3',
-    'https://www.mfiles.co.uk/mp3-downloads/adams-short-ride.mp3',
-    'https://www.mfiles.co.uk/mp3-downloads/bernstein-candide-overture.mp3'
-  ],
-  tired: [
-    'https://www.mfiles.co.uk/mp3-downloads/debussy-clair-de-lune.mp3',
-    'https://www.mfiles.co.uk/mp3-downloads/rachmaninoff-vocalise.mp3',
-    'https://www.mfiles.co.uk/mp3-downloads/satie-gymnopedie-1.mp3'
-  ]
-};
-
 const notes = {
   sad:[
     "Even on your hardest days, remember your little brother sees you as his hero. His eyes light up whenever you smile at him. They feel your love. Every hug and laugh you give them stays in their hearts. I promise, even when sad, your little sister thinks you can do anything.",
@@ -252,36 +230,22 @@ const notes = {
   ]
 };
 
-let currentMood = '';
 const bgMusic = document.getElementById('bgMusic');
 const startMusicBtn = document.getElementById('startMusicBtn');
 const stopMusicBtn = document.getElementById('stopMusicBtn');
 
-// Show mood page
-function showPage(pageId, bgColor, mood){
+function showPage(pageId, bgColor){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
   document.body.style.background = bgColor;
-
-  currentMood = mood;
-  if(mood && musicTracks[mood]){
-    const track = musicTracks[mood][Math.floor(Math.random()*musicTracks[mood].length)];
-    bgMusic.src = track;
-    bgMusic.pause();
-    bgMusic.currentTime = 0;
-  }
 }
 
-// Start music button
+// Start music
 startMusicBtn.onclick = () => {
-  if(currentMood && bgMusic.src){
-    bgMusic.play().catch(e => console.log("Music play blocked until user interaction", e));
-  } else {
-    alert("Please select a mood first!");
-  }
+  bgMusic.play().catch(e => console.log("Music play blocked until user interaction", e));
 };
 
-// Stop music button
+// Stop music
 stopMusicBtn.onclick = () => {
   bgMusic.pause();
   bgMusic.currentTime = 0;
