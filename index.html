@@ -148,6 +148,19 @@ footer{
   0%{transform:translateY(100vh) rotate(0deg);}
   100%{transform:translateY(-20vh) rotate(360deg);}
 }
+
+/* confetti */
+.confetti{
+  position:absolute;
+  animation: fall linear forwards;
+  pointer-events:none;
+  font-size:1.2rem;
+  opacity:0.9;
+}
+@keyframes fall{
+  0%{transform:translateY(-10vh) rotate(0deg);}
+  100%{transform:translateY(110vh) rotate(360deg);}
+}
 </style>
 </head>
 <body>
@@ -199,6 +212,10 @@ footer{
   <p>Made with love just for you 🌷</p>
 </footer>
 
+<audio id="bgMusic" loop autoplay>
+  <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 const notes = {
   sad:[
@@ -231,6 +248,7 @@ function showPage(pageId, bgColor, emojis) {
   document.body.style.background = bgColor;
   currentEmojis = emojis;
   createEmojis();
+  createConfetti();
 }
 
 function showNote(mood){
@@ -239,7 +257,7 @@ function showNote(mood){
   const noteCard = document.getElementById('note-' + mood);
   noteCard.innerText = note;
 
-  // add floating emojis inside note
+  // floating emojis inside note
   noteCard.innerHTML += '<span>'+currentEmojis.split('').join('</span><span>')+'</span>';
   noteCard.style.opacity = 0;
   noteCard.style.transform = 'translateY(20px)';
@@ -247,9 +265,7 @@ function showNote(mood){
 }
 
 function createEmojis(){
-  // remove old emojis
   document.querySelectorAll('.emoji').forEach(e=>e.remove());
-
   for(let i=0;i<25;i++){
     const emoji = document.createElement('div');
     emoji.className='emoji';
@@ -259,6 +275,21 @@ function createEmojis(){
     emoji.innerText = currentEmojis[Math.floor(Math.random()*currentEmojis.length)];
     document.body.appendChild(emoji);
     setTimeout(()=>emoji.remove(),8000);
+  }
+}
+
+function createConfetti(){
+  document.querySelectorAll('.confetti').forEach(e=>e.remove());
+  const confettiEmojis = currentEmojis.split('');
+  for(let i=0;i<30;i++){
+    const confetti = document.createElement('div');
+    confetti.className='confetti';
+    confetti.style.left = Math.random()*100+'%';
+    confetti.style.fontSize = (Math.random()*25+15)+'px';
+    confetti.innerText = confettiEmojis[Math.floor(Math.random()*confettiEmojis.length)];
+    confetti.style.animationDuration = (Math.random()*5+5)+'s';
+    document.body.appendChild(confetti);
+    setTimeout(()=>confetti.remove(),8000);
   }
 }
 </script>
