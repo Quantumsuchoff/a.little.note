@@ -16,122 +16,27 @@ body{
   color:#444;
   min-height:100vh;
 }
-header{
-  text-align:center;
-  padding:3rem 1rem 2rem;
-}
-header h1{
-  font-family:'Dancing Script',cursive;
-  font-size:3rem;
-  margin:0;
-  color:#d94f70;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-header p{
-  font-size:1.2rem;
-  margin-top:0.5rem;
-  color:#555;
-}
-.moods{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  margin:2rem 0;
-  gap:1rem;
-}
-.btn-mood{
-  background:linear-gradient(145deg,#ffb3c6,#ffcce0);
-  border:none;
-  border-radius:50px;
-  padding:1rem 2rem;
-  font-size:1.2rem;
-  cursor:pointer;
-  color:white;
-  font-weight:600;
-  transition:all 0.3s ease;
-  box-shadow:0 5px 20px rgba(0,0,0,0.2);
-}
-.btn-mood:hover{
-  transform:translateY(-5px) scale(1.1);
-  box-shadow:0 15px 25px rgba(0,0,0,0.3);
-}
-.page{
-  display:none;
-  padding:2rem 1rem;
-  animation: fadeIn 1s ease;
-  max-width:600px;
-  margin:0 auto;
-}
+header{text-align:center;padding:3rem 1rem 2rem;}
+header h1{font-family:'Dancing Script',cursive;font-size:3rem;margin:0;color:#d94f70;text-shadow:0 2px 5px rgba(0,0,0,0.1);}
+header p{font-size:1.2rem;margin-top:0.5rem;color:#555;}
+.moods{display:flex;flex-wrap:wrap;justify-content:center;margin:2rem 0;gap:1rem;}
+.btn-mood{background:linear-gradient(145deg,#ffb3c6,#ffcce0);border:none;border-radius:50px;padding:1rem 2rem;font-size:1.2rem;cursor:pointer;color:white;font-weight:600;transition:all 0.3s ease;box-shadow:0 5px 20px rgba(0,0,0,0.2);}
+.btn-mood:hover{transform:translateY(-5px) scale(1.1);box-shadow:0 15px 25px rgba(0,0,0,0.3);}
+.page{display:none;padding:2rem 1rem;animation: fadeIn 1s ease;max-width:600px;margin:0 auto;}
 .active{display:block;}
-.note-card{
-  background:#fff;
-  border-radius:25px;
-  padding:2rem;
-  margin:2rem auto;
-  font-size:1.2rem;
-  line-height:1.6;
-  box-shadow:0 12px 25px rgba(0,0,0,0.15);
-  opacity:0;
-  transform:translateY(30px);
-  animation: popUp 0.6s forwards;
-  text-align:center;
-  position:relative;
-}
-.btn-note{
-  margin-top:1rem;
-  background:#ffd6e0;
-  color:#d94f70;
-  border:none;
-  border-radius:30px;
-  padding:0.8rem 2rem;
-  font-size:1rem;
-  cursor:pointer;
-  font-weight:600;
-  transition:all 0.3s ease;
-}
-.btn-note:hover{
-  transform:scale(1.1) rotate(-1deg);
-  box-shadow:0 10px 20px rgba(0,0,0,0.2);
-}
-.btn-back{
-  margin-top:2rem;
-  background:#ffb3c6;
-  color:white;
-  border:none;
-  border-radius:25px;
-  padding:0.6rem 1.5rem;
-  font-size:0.95rem;
-  cursor:pointer;
-  transition:transform 0.3s;
-}
+.note-card{background:#fff;border-radius:25px;padding:2rem;margin:2rem auto;font-size:1.2rem;line-height:1.6;box-shadow:0 12px 25px rgba(0,0,0,0.15);opacity:0;transform:translateY(30px);animation: popUp 0.6s forwards;text-align:center;position:relative;}
+.btn-note{margin-top:1rem;background:#ffd6e0;color:#d94f70;border:none;border-radius:30px;padding:0.8rem 2rem;font-size:1rem;cursor:pointer;font-weight:600;transition:all 0.3s ease;}
+.btn-note:hover{transform:scale(1.1) rotate(-1deg);box-shadow:0 10px 20px rgba(0,0,0,0.2);}
+.btn-back{margin-top:2rem;background:#ffb3c6;color:white;border:none;border-radius:25px;padding:0.6rem 1.5rem;font-size:0.95rem;cursor:pointer;transition:transform 0.3s;}
 .btn-back:hover{transform:scale(1.1);}
-footer{
-  text-align:center;
-  font-size:0.9rem;
-  color:#777;
-  padding:2rem 1rem;
-}
+footer{text-align:center;font-size:0.9rem;color:#777;padding:2rem 1rem;}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes popUp{from{opacity:0; transform:translateY(30px);}to{opacity:1; transform:translateY(0);}}
-#musicControls{
-  text-align:center;
-  margin:1rem 0;
-}
-#musicControls button{
-  padding:0.5rem 1rem;
-  font-size:1rem;
-  margin:0 0.5rem;
-  border:none;
-  border-radius:15px;
-  background:#ffd6e0;
-  color:#d94f70;
-  cursor:pointer;
-  font-weight:600;
-}
-#musicControls input[type=range]{
-  vertical-align:middle;
-  width:150px;
-}
+#musicControls{text-align:center;margin:1rem 0;}
+#musicControls button{padding:0.5rem 1rem;font-size:1rem;margin:0 0.5rem;border:none;border-radius:15px;background:#ffd6e0;color:#d94f70;cursor:pointer;font-weight:600;}
+#musicControls input[type=range]{vertical-align:middle;width:150px;}
+#musicPlayerContainer{display:flex;justify-content:center;margin-top:1rem;}
+iframe{border-radius:15px;}
 </style>
 </head>
 <body>
@@ -143,12 +48,13 @@ footer{
 
 <!-- Music Controls -->
 <div id="musicControls">
-  <button id="startMusicBtn">Start Music 🎵</button>
   <button id="stopMusicBtn">Stop Music ⏹️</button>
   Volume: <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
 </div>
 
-<audio id="bgMusic" loop></audio>
+<div id="musicPlayerContainer">
+  <iframe id="musicPlayer" width="300" height="80" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
 
 <!-- Home Page -->
 <div id="home" class="page active">
@@ -196,10 +102,26 @@ footer{
 
 <script>
 const musicTracks = {
-  sad:'https://www.mfiles.co.uk/mp3-downloads/beethoven-fur-elise.mp3',
-  happy:'https://www.mfiles.co.uk/mp3-downloads/bach-brandenburg-2.mp3',
-  overwhelmed:'https://www.mfiles.co.uk/mp3-downloads/chopin-nocturne-op-9-no-2.mp3',
-  tired:'https://www.mfiles.co.uk/mp3-downloads/debussy-clair-de-lune.mp3'
+  sad: [
+    'https://www.youtube.com/embed/6P5u2nq8M8w?autoplay=1&loop=1&playlist=6P5u2nq8M8w',
+    'https://www.youtube.com/embed/3kA4GJ3s0g4?autoplay=1&loop=1&playlist=3kA4GJ3s0g4',
+    'https://www.youtube.com/embed/1nX9vF9Y0sI?autoplay=1&loop=1&playlist=1nX9vF9Y0sI'
+  ],
+  happy: [
+    'https://www.youtube.com/embed/5bY7uZ1JgkA?autoplay=1&loop=1&playlist=5bY7uZ1JgkA',
+    'https://www.youtube.com/embed/3X9H8VZQ3hE?autoplay=1&loop=1&playlist=3X9H8VZQ3hE',
+    'https://www.youtube.com/embed/GRxofEmo3HA?autoplay=1&loop=1&playlist=GRxofEmo3HA'
+  ],
+  overwhelmed: [
+    'https://www.youtube.com/embed/4mX5j3vVqZ0?autoplay=1&loop=1&playlist=4mX5j3vVqZ0',
+    'https://www.youtube.com/embed/1v3v3VgD0N4?autoplay=1&loop=1&playlist=1v3v3VgD0N4',
+    'https://www.youtube.com/embed/1bJq7z8tZ6Y?autoplay=1&loop=1&playlist=1bJq7z8tZ6Y'
+  ],
+  tired: [
+    'https://www.youtube.com/embed/4fvoJ6f0c8A?autoplay=1&loop=1&playlist=4fvoJ6f0c8A',
+    'https://www.youtube.com/embed/3l6c0pJ0q0I?autoplay=1&loop=1&playlist=3l6c0pJ0q0I',
+    'https://www.youtube.com/embed/6vYv8F7vO2I?autoplay=1&loop=1&playlist=6vYv8F7vO2I'
+  ]
 };
 
 const notes = {
@@ -242,46 +164,34 @@ const notes = {
   ]
 };
 
-const bgMusic = document.getElementById('bgMusic');
-const startMusicBtn = document.getElementById('startMusicBtn');
+const musicPlayer = document.getElementById('musicPlayer');
 const stopMusicBtn = document.getElementById('stopMusicBtn');
-const volumeSlider = document.getElementById('volumeSlider');
 
 let currentMood='';
-
-startMusicBtn.onclick = () => {
-  if(currentMood && musicTracks[currentMood]){
-    bgMusic.src = musicTracks[currentMood];
-    bgMusic.volume = volumeSlider.value;
-    bgMusic.play();
-  }
-};
-stopMusicBtn.onclick = () => bgMusic.pause();
-volumeSlider.oninput = () => bgMusic.volume = volumeSlider.value;
 
 function showPage(pageId,bgColor,mood){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
-  document.body.style.background=bgColor;
-  currentMood=mood;
+  document.body.style.background = bgColor;
+
   if(mood && musicTracks[mood]){
-    bgMusic.src=musicTracks[mood];
-    bgMusic.volume=volumeSlider.value;
-    bgMusic.play().catch(()=>console.log("Music blocked until user interaction"));
+    const trackList = musicTracks[mood];
+    const track = trackList[Math.floor(Math.random()*trackList.length)];
+    musicPlayer.src = track;
+    currentMood = mood;
   }
 }
 
+stopMusicBtn.onclick = () => musicPlayer.src = '';
+
 function showNote(mood){
-  const arr=notes[mood];
-  const note=arr[Math.floor(Math.random()*arr.length)];
-  const noteCard=document.getElementById('note-'+mood);
-  noteCard.innerText=note;
-  noteCard.style.opacity=0;
+  const arr = notes[mood];
+  const note = arr[Math.floor(Math.random()*arr.length)];
+  const noteCard = document.getElementById('note-'+mood);
+  noteCard.innerText = note;
+  noteCard.style.opacity = 0;
   noteCard.style.transform='translateY(20px)';
-  setTimeout(()=>{
-    noteCard.style.opacity=1;
-    noteCard.style.transform='translateY(0)';
-  },50);
+  setTimeout(()=>{noteCard.style.opacity=1; noteCard.style.transform='translateY(0)';},50);
 }
 </script>
 
