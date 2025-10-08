@@ -161,11 +161,13 @@ function playMusic(mood){
     const tracks = musicTracks[mood];
     const track = tracks[Math.floor(Math.random() * tracks.length)];
     bgMusic.src = track;
-    bgMusic.play();
+    bgMusic.play().catch(e => console.log("Play prevented until user interaction:", e));
   }
 }
 
-startBtn.onclick = () => { playMusic(currentMood); };
+startBtn.onclick = () => {
+  if(currentMood) playMusic(currentMood);
+};
 stopBtn.onclick = () => { bgMusic.pause(); bgMusic.currentTime = 0; };
 
 function showPage(pageId,bgColor,mood){
@@ -173,7 +175,6 @@ function showPage(pageId,bgColor,mood){
   document.getElementById(pageId).classList.add('active');
   document.body.style.background = bgColor;
   currentMood = mood;
-  playMusic(mood);
 }
 
 function showNote(mood){
@@ -186,6 +187,7 @@ function showNote(mood){
   setTimeout(()=>{
     noteCard.style.opacity = 1;
     noteCard.style.transform = 'translateY(0)';
+    playMusic(mood); // play new song when note appears
   },50);
 }
 </script>
