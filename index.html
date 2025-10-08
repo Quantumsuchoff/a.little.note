@@ -1,156 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sidnee’s Little Corner</title>
-  <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(to bottom right, #ffe6f0, #fff8e7);
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sidnee's Corner 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<style>
+  /* Base Styles */
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffe6f0, #fff8e7);
+    overflow-x: hidden;
+    color: #444;
+  }
 
-    header {
-      background-color: #ffd6e0;
-      padding: 2rem;
-      border-bottom: 4px solid #ffb3c6;
-      animation: fadeDown 1.5s ease;
-    }
+  header {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    background: linear-gradient(to right, #ffd6e0, #ffecd9);
+    position: relative;
+    overflow: hidden;
+  }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      color: #d94f70;
-    }
+  header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    margin: 0;
+    color: #d94f70;
+    animation: float 3s ease-in-out infinite;
+  }
 
-    header p {
-      margin: .5rem 0 0;
-      color: #444;
-    }
+  header p {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    color: #555;
+  }
 
-    .page {
-      display: none;
-      padding: 2rem;
-      animation: fadeIn 1s ease;
-    }
+  /* Mood Buttons */
+  .moods {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2rem 0;
+    gap: 1rem;
+  }
 
-    .active {
-      display: block;
-    }
+  .btn-mood {
+    background: linear-gradient(145deg, #ffb3c6, #ffcce0);
+    border: none;
+    border-radius: 30px;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
 
-    .btn {
-      background: #ffb3c6;
-      color: #fff;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 30px;
-      font-size: 1rem;
-      margin: 1rem;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .btn:hover {
-      transform: scale(1.05);
-    }
+  .btn-mood:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
 
-    .note {
-      background: #fff;
-      padding: 1.5rem;
-      margin: 1rem auto;
-      max-width: 400px;
-      border-radius: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      font-size: 1.2rem;
-      line-height: 1.6;
-      display: none;
-      animation: popUp 0.6s ease;
-    }
+  /* Pages */
+  .page {
+    display: none;
+    padding: 2rem 1rem;
+    animation: fadeIn 1s ease;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .active { display: block; }
 
-    footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #777;
-      padding-bottom: 1rem;
-    }
+  /* Note Card */
+  .note-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem auto;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: popUp 0.6s forwards;
+  }
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
+  .btn-note {
+    margin-top: 1rem;
+    background: #ffd6e0;
+    color: #d94f70;
+    border: none;
+    border-radius: 30px;
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .btn-note:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  }
 
-    @keyframes fadeDown {
-      from {opacity: 0; transform: translateY(-30px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
+  .btn-back {
+    margin-top: 2rem;
+    background: #ffb3c6;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  .btn-back:hover { transform: scale(1.05); }
 
-    @keyframes popUp {
-      from {opacity: 0; transform: scale(0.8);}
-      to {opacity: 1; transform: scale(1);}
-    }
-  </style>
+  footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+    padding: 2rem 1rem;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+  }
+
+  @keyframes popUp {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+  }
+
+  @keyframes float {
+    0%,100%{ transform: translateY(0);}
+    50%{ transform: translateY(-10px);}
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Hey Sidnee 👋</h1>
-    <p>Welcome to your little encouragement corner ✨</p>
-  </header>
 
-  <!-- Home Page -->
-  <div id="home" class="page active">
-    <p>Pick how you’re feeling today:</p>
-    <button class="btn" onclick="showPage('sad')">😢 Sad</button>
-    <button class="btn" onclick="showPage('happy')">😊 Happy</button>
-    <button class="btn" onclick="showPage('overwhelmed')">😵 Overwhelmed</button>
+<header>
+  <h1>Sidnee 🌸</h1>
+  <p>Welcome to your corner of encouragement ✨</p>
+</header>
+
+<!-- Home Page -->
+<div id="home" class="page active">
+  <p style="text-align:center; font-size:1.2rem;">How are you feeling today?</p>
+  <div class="moods">
+    <button class="btn-mood" onclick="showPage('sad')">😢 Sad</button>
+    <button class="btn-mood" onclick="showPage('happy')">😊 Happy</button>
+    <button class="btn-mood" onclick="showPage('overwhelmed')">😵 Overwhelmed</button>
+    <button class="btn-mood" onclick="showPage('tired')">😴 Tired</button>
   </div>
+</div>
 
-  <!-- Sad Page -->
-  <div id="sad" class="page">
-    <h2>When you feel sad 💕</h2>
-    <button class="btn" onclick="showNote('sadNote')">Tap for a note</button>
-    <div id="sadNote" class="note">
-      Even on tough days, you are someone’s reason to smile. You matter. 🌸
-    </div>
-    <button class="btn" onclick="showPage('home')">⬅ Back</button>
-  </div>
+<!-- Sad Page -->
+<div id="sad" class="page">
+  <h2>Feeling a bit sad 💕</h2>
+  <button class="btn-note" onclick="showNote('sad')">Get a note</button>
+  <div id="note-sad" class="note-card"></div>
+  <button class="btn-back" onclick="showPage('home')">⬅ Back</button>
+</div>
 
-  <!-- Happy Page -->
-  <div id="happy" class="page">
-    <h2>When you feel happy 🎉</h2>
-    <button class="btn" onclick="showNote('happyNote')">Tap for a note</button>
-    <div id="happyNote" class="note">
-      That smile looks great on you. Keep shining, Sidnee ✨
-    </div>
-    <button class="btn" onclick="showPage('home')">⬅ Back</button>
-  </div>
+<!-- Happy Page -->
+<div id="happy" class="page">
+  <h2>Feeling happy today 🎉</h2>
+  <button class="btn-note" onclick="showNote('happy')">Get a note</button>
+  <div id="note-happy" class="note-card"></div>
+  <button class="btn-back" onclick="showPage('home')">⬅ Back</button>
+</div>
 
-  <!-- Overwhelmed Page -->
-  <div id="overwhelmed" class="page">
-    <h2>When you feel overwhelmed 🌊</h2>
-    <button class="btn" onclick="showNote('overNote')">Tap for a note</button>
-    <div id="overNote" class="note">
-      Take one breath at a time. You’re stronger than you think 💪
-    </div>
-    <button class="btn" onclick="showPage('home')">⬅ Back</button>
-  </div>
+<!-- Overwhelmed Page -->
+<div id="overwhelmed" class="page">
+  <h2>Feeling overwhelmed 🌊</h2>
+  <button class="btn-note" onclick="showNote('overwhelmed')">Get a note</button>
+  <div id="note-overwhelmed" class="note-card"></div>
+  <button class="btn-back" onclick="showPage('home')">⬅ Back</button>
+</div>
 
-  <footer>
-    <p>Made with kindness for you 🌷</p>
-  </footer>
+<!-- Tired Page -->
+<div id="tired" class="page">
+  <h2>Feeling tired 😴</h2>
+  <button class="btn-note" onclick="showNote('tired')">Get a note</button>
+  <div id="note-tired" class="note-card"></div>
+  <button class="btn-back" onclick="showPage('home')">⬅ Back</button>
+</div>
 
-  <script>
-    function showPage(pageId) {
-      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-      document.getElementById(pageId).classList.add('active');
-    }
+<footer>
+  <p>Made with kindness just for you 🌷</p>
+</footer>
 
-    function showNote(noteId) {
-      const note = document.getElementById(noteId);
-      note.style.display = "block";
-    }
-  </script>
+<script>
+  // Notes for each mood - 50+ personalized
+  const notes = {
+    sad: [
+      "Even when the day feels heavy, your smile brightens someone’s world.",
+      "You’re an amazing sister, Sidnee. Your younger siblings look up to you.",
+      "It’s okay to rest. You’re allowed to take a pause.",
+      "Remember: donuts are sweet, but so are you 🍩",
+      "Tough days pass, but your kindness stays.",
+      "Your heart is stronger than any challenge.",
+      "Even small victories count. Celebrate them.",
+      "You matter more than you realize.",
+      "The early mornings at the donut shop show your dedication.",
+      "You’re balancing so much, and you’re doing beautifully.",
+      "It’s okay to cry sometimes. It doesn’t make you weak.",
+      "You inspire those around you just by being you.",
+      "Your laughter is a light in someone’s day.",
+      "No matter what, someone is grateful for you today.",
+      "The world is better with your kindness in it."
+    ],
+    happy: [
+      "Your happiness is contagious 🌟",
+      "You bring sunshine to your family’s day.",
+      "Keep being your amazing, hardworking self.",
+      "Your laughter makes the early mornings sweeter.",
+      "Even the busiest days can have joyful moments.",
+      "You deserve this happiness, Sidnee!",
+      "Your siblings love having you as a role model.",
+      "The way you juggle school and jobs is incredible.",
+      "Every smile you share spreads warmth.",
+      "You’re amazing at making people feel cared for.",
+      "Celebrate the small joys today!",
+      "Your energy makes the world brighter.",
+      "Even busy days have moments of fun.",
+      "You make ordinary days special for everyone around you.",
+      "Keep glowing!"
+    ],
+    overwhelmed: [
+      "Take one breath at a time, Sidnee.",
+      "Even superheroes need breaks 💪",
+      "Focus on one task at a time, you’ve got this.",
+      "It’s okay to ask for help if you need it.",
+      "You’ve survived every overwhelming day before, you can do it again.",
+      "Remember to smile even through chaos.",
+      "Your perseverance is inspiring.",
+      "The world admires your strength, even if you don’t see it.",
+      "Take a moment for yourself, even a minute counts.",
+      "Deep breaths. You are enough.",
+      "Your hard work will pay off, Sidnee.",
+      "Step back and let yourself recharge.",
+      "You’re handling more than most, and doing amazing.",
+      "The morning sun is waiting for you tomorrow.",
+      "Even small progress is progress."
+    ],
+    tired: [
+      "Rest is not lazy. You deserve it 😴",
+      "Early mornings show your dedication and heart.",
+      "Coffee can wait, but your well-being cannot ☕",
+      "Your resilience amazes everyone.",
+      "Even when tired, you make a difference.",
+      "You’re an inspiration juggling two jobs and school.",
+      "Your siblings look up to your dedication.",
+      "Naps are undefeated. Don’t forget that.",
+      "A tired body, but a strong heart.",
+      "You’ve got this. Slowly but surely.",
+      "Early mornings mean early victories 🌅",
+      "Every sunrise is a reminder of your strength.",
+      "You’re doing better than you think.",
+      "Even heroes need sleep.",
+      "Your kindness doesn’t need to be tired."
+    ]
+  };
+
+  function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    // Clear note when entering page
+    const noteDivs = document.querySelectorAll('.note-card');
+    noteDivs.forEach(n => n.style.opacity = 0);
+    noteDivs.forEach(n => n.innerHTML = '');
+  }
+
+  function showNote(mood) {
+    const noteDiv = document.getElementById(`note-${mood}`);
+    const moodNotes = notes[mood];
+    const randomIndex = Math.floor(Math.random() * moodNotes.length);
+    noteDiv.innerHTML = moodNotes[randomIndex];
+    noteDiv.style.opacity = 1;
+  }
+</script>
 </body>
 </html>
