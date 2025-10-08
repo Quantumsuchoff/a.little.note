@@ -1,209 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Little Note</title>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
-<style>
-  body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(-45deg, #ffe6f2, #d6eaff, #fff7d6, #e4ffd6);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-    font-family: 'Quicksand', sans-serif;
-    overflow: hidden;
-    flex-direction: column;
-    text-align: center;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidnee's Smile Page</title>
+  <style>
+    body {
+      font-family: "Comic Sans MS", "Poppins", sans-serif;
+      background: linear-gradient(to bottom right, #ffe6f0, #fff8e7);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #444;
+    }
 
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+    header {
+      background-color: #ffd6e0;
+      padding: 2rem;
+      border-bottom: 4px solid #ffb3c6;
+    }
 
-  .cloud {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.6;
-    filter: blur(4px);
-    animation: floatCloud 60s linear infinite;
-  }
-  @keyframes floatCloud {
-    from { transform: translateX(-200px); }
-    to { transform: translateX(120vw); }
-  }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #d94f70;
+    }
 
-  .ground {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100px;
-    background: linear-gradient(to top, #b7e4a3, #daf7c0);
-    border-top-left-radius: 50% 20px;
-    border-top-right-radius: 50% 20px;
-  }
+    .message-box {
+      margin: 2rem auto;
+      padding: 1.5rem;
+      max-width: 500px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
 
-  .tennis {
-    position: absolute;
-    width: 35px;
-    height: 35px;
-    background: radial-gradient(circle at 30% 30%, #f7ff8d, #c8e96a);
-    border-radius: 50%;
-    box-shadow: 0 0 8px rgba(255,255,255,0.6);
-    animation: float 6s ease-in-out infinite alternate;
-  }
-  .tennis::after {
-    content: "";
-    position: absolute;
-    top: 20%;
-    left: 5%;
-    width: 90%;
-    height: 60%;
-    border: 2px solid white;
-    border-radius: 50%;
-    opacity: 0.7;
-  }
-  @keyframes float {
-    0% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-25px) rotate(5deg); }
-    100% { transform: translateY(0) rotate(-5deg); }
-  }
+    .emoji {
+      font-size: 2rem;
+    }
 
-  .sparkle {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.7;
-    animation: twinkle 2s infinite ease-in-out alternate;
-  }
-  @keyframes twinkle {
-    from { opacity: 0.2; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1.2); }
-  }
-
-  .message-box {
-    background: rgba(255,255,255,0.85);
-    padding: 20px;
-    border-radius: 20px;
-    max-width: 85%;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    backdrop-filter: blur(12px);
-    font-size: 1.15rem;
-    line-height: 1.6;
-    transition: opacity 0.5s ease;
-    cursor: pointer;
-    z-index: 10;
-  }
-
-  .hint {
-    margin-top: 8px;
-    font-size: 0.85rem;
-    color: #555;
-    opacity: 0.6;
-  }
-
-  .fade-in {
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeIn 1s forwards;
-  }
-
-  @keyframes fadeIn {
-    to { opacity: 1; transform: translateY(0);}
-  }
-</style>
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #777;
+      padding-bottom: 1rem;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <h1>Hey Sidnee 👋</h1>
+    <p>You’ve got this 💪</p>
+  </header>
 
-<!-- drifting clouds -->
-<div class="cloud" style="width:120px;height:60px;top:10%;left:-100px;animation-delay:0s;"></div>
-<div class="cloud" style="width:90px;height:50px;top:25%;left:-150px;animation-delay:10s;"></div>
-<div class="cloud" style="width:140px;height:70px;top:35%;left:-200px;animation-delay:20s;"></div>
+  <main>
+    <div class="message-box">
+      <p id="message">Loading encouragement...</p>
+      <div class="emoji">🍩☀️🐔</div>
+    </div>
+  </main>
 
-<div class="ground"></div>
+  <footer>
+    <p>Made with kindness for you 🌸</p>
+  </footer>
 
-<script>
-  // floating tennis balls
-  for (let i = 0; i < 5; i++) {
-    const ball = document.createElement('div');
-    ball.className = 'tennis';
-    ball.style.left = (5 + i * 20) + 'vw';
-    ball.style.bottom = (30 + Math.random() * 40) + 'px';
-    ball.style.animationDelay = (Math.random() * 2) + 's';
-    document.body.appendChild(ball);
-  }
+  <script>
+    const messages = [
+      "You deserve a donut today 🍩",
+      "Chik-fil-A might have the chicken, but you’ve got the strength 🐔💪",
+      "Don’t forget: naps are undefeated 💤",
+      "Early mornings mean early victories 🌅",
+      "You’re stronger than Monday mornings ☕",
+      "Keep shining, Sidnee ✨"
+    ];
 
-  // sparkles in background
-  for (let i = 0; i < 15; i++) {
-    const sparkle = document.createElement('div');
-    sparkle.className = 'sparkle';
-    sparkle.style.left = Math.random() * 100 + 'vw';
-    sparkle.style.top = Math.random() * 70 + 'vh';
-    sparkle.style.animationDelay = (Math.random() * 3) + 's';
-    document.body.appendChild(sparkle);
-  }
-</script>
-
-<div class="message-box fade-in" id="box">
-  hey :) you've probably never had a website made just for you lol
-  <div class="hint">(tap when you're done reading)</div>
-</div>
-
-<script>
-  const box = document.getElementById('box');
-  const messages = [
-    "hey :) you've probably never had a website made just for you lol",
-    "i spent way too much time on this so you better smile at least once 😅",
-    "also if you are wondering why it says quantum suchoff in the website it's bc i used this site for my physics page, but i changed it",
-    "anywayy",
-    "i was literally talking to chatgpt 5 mins ago like 'should i text her??'",
-    "and then i was like nah, let's go all in, let's make a WEBSITE",
-    "ok this is gonna sound super cheesy but you were my biggest crush in high school 🫣",
-    "we never talked but you just seemed so cool and kind and pretty and honestly i was too shy (and highkey you were out of my league)",
-    "so yeah, it stung a little when i saw you heard rumors about me that make me out to be someone i'm not",
-    "but i just want you to know i'm actually super kind, like annoyingly so lol",
-    "and then i sit here like... do i try to prove it? but that sounds defensive 😭",
-    "so i literally don't know what to do except make this wholesome silly website",
-    "and IDK maybe the reason i keep reaching out (sorry for the spam btw) is because i think you're a smart person",
-    "like, you see people for who they are and you have a good intuition and you use your own judgment",
-    "i just really hope you do that with me too",
-    "if i ever heard bad things about you, i’d value you enough to hear you out first, you know?",
-    "buttttt, if you think i'm bad, this probably just creeps you out even more lol",
-    "but at least you know i care enough to try this hard, it's worth the risk",
-    "and honestly, i hope this made you laugh or at least made you feel a tiny bit special",
-    "btw yes those floating things are tennis balls 🎾 i TRIED ok",
-    "and yes i suck at coding but this is from the heart so that counts for something haha",
-    "anyway thanks for reading this far, it actually means a lot 🫶",
-    "so yeah... that's it. have a really really good day :)"
-  ];
-
-  let i = 0;
-  box.addEventListener('click', () => {
-    i++;
-    if (i < messages.length) {
-      box.style.opacity = 0;
-      setTimeout(() => {
-        box.innerHTML = messages[i] + '<div class="hint">(tap to keep going)</div>';
-        box.style.opacity = 1;
-      }, 300);
-    } else {
-      box.style.opacity = 0;
-      setTimeout(() => {
-        box.innerHTML = "ok now i'm embarrassed lol thanks for coming to my ted talk 😂";
-        box.style.opacity = 1;
-      }, 300);
+    function newMessage() {
+      const random = Math.floor(Math.random() * messages.length);
+      document.getElementById("message").textContent = messages[random];
     }
-  });
-</script>
 
+    // Show a new message every time she refreshes
+    newMessage();
+  </script>
 </body>
 </html>
